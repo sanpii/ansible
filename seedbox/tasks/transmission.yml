@@ -1,0 +1,42 @@
+- name: install transmission
+  become: true
+  apt:
+    name: transmission-daemon
+    state: present
+
+- name: stop transmission
+  become: true
+  service:
+    name: transmission-daemon
+    state: stopped
+
+- name: copy configuration
+  become: true
+  template:
+    src: seedbox/files/settings.json
+    dest: /etc/transmission-daemon/
+
+- name: create torrents directory
+  file:
+    path: ~/torrents/
+    state: directory
+    group: debian-transmission
+    mode: "g+w"
+
+- name: create incomplete directory
+  file:
+    path: ~/incomplete/
+    state: directory
+    group: debian-transmission
+    mode: "g+w"
+
+- name: create watch directory
+  file:
+    path: ~/torrents/.torrents/
+    state: directory
+
+- name: start transmission
+  become: true
+  service:
+    name: transmission-daemon
+    state: started
