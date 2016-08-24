@@ -1,4 +1,5 @@
 - hosts: kimsufi
   roles:
+    - common
     - reverse_proxy
     - seedbox
