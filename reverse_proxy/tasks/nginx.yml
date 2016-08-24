@@ -1,0 +1,37 @@
+- name: install nginx
+  become: true
+  apt: name=nginx state=present
+
+- name: remove default vhost
+  become: true
+  file: path=/etc/nginx/sites-enabled/default state=absent
+
+- name: create proxy cache directory
+  become: true
+  file: path=/var/cache/nginx owner=www-data group=www-data state=directory
+
+- name: copy proxy configuration
+  become: true
+  copy: src=proxy.conf dest=/etc/nginx/conf.d/
+
+- name: remove default ssl configuration
+  become: true
+  lineinfile: dest=/etc/nginx/nginx.conf regexp="ssl_" state="absent"
+
+- name: generate dhparam
+  become: true
+  command: openssl dhparam -out /etc/ssl/private/dh4096.pem 4096 creates=/etc/ssl/private/dh4096.pem
+
+- name: copy TLS configuration
+  become: true
+  copy: src=tls.conf dest=/etc/nginx/conf.d/
+
+- name: copy vhosts
+  become: true
+  copy: src={{ item }} dest=/etc/nginx/sites-enabled/
+  with_fileglob:
+    - vhost/*
+
+- name: reload nginx
+  become: true
+  service: name=nginx state=reloaded

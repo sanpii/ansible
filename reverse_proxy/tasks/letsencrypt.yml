@@ -1,0 +1,38 @@
+- name: install certbot
+  become: true
+  apt:
+    name: certbot
+    state: present
+
+- name: install git
+  become: true
+  apt:
+    name: git
+    state: present
+
+- name: clone deploy scripts
+  git:
+    repo: https://github.com/sanpii/deploy.git
+    dest: "~/deploy"
+
+- name: copy letsencrypt configuration
+  copy:
+    src: letsencrypt.sh
+    dest: "~/deploy/src/config/"
+
+- name: install cron
+  become: true
+  cron:
+    name: "letsencrypt"
+    job: "~/deploy/src/letsencrypt"
+    state: "present"
+    weekday: 7
+    hour: 23
+    minute: 0
+    cron_file: letsencrypt
+    user: root
+
+- name: create letsencrypt webroot
+  file:
+    dest: /tmp/letsencrypt/public_html/
+    state: directory
