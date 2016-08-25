@@ -1,0 +1,12 @@
+- name: install fail2ban
+  become: true
+  apt:
+    name: fail2ban
+    state: present
+
+- name: copy fail2ban configuration
+  become: true
+  copy:
+    src: jail.local
+    dest: /etc/fail2ban/
+  notify: fail2ban reload
