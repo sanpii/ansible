@@ -1,2 +1,3 @@
 - include: update.yml
+- include: smartctl.yml
 - include: fail2ban.yml

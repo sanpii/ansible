@@ -1,0 +1,12 @@
+- name: install smartctl
+  become: true
+  apt:
+    name: smartmontools
+    state: present
+
+- name: configure smartd
+  become: true
+  lineinfile:
+    dest: /etc/smartd.conf
+    line: 'DEVICESCAN -a -o on -s on -S on -I 190 -I 194 -I 231 -m root -s (S/../.././02|L/../../5/04)'
+    state: present
