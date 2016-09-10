@@ -24,7 +24,7 @@
 
 - name: copy TLS configuration
   become: true
-  copy: src=tls.conf dest=/etc/nginx/conf.d/
+  copy: src=web/files/tls.conf dest=/etc/nginx/conf.d/
 
 - name: copy vhosts
   become: true

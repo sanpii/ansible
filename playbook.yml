@@ -7,3 +7,4 @@
 - hosts: cuddles
   roles:
     - common
+    - web
