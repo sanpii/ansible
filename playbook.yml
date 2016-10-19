@@ -1,10 +1,18 @@
+- hosts: cuddles
+  roles:
+    - common
+    - web
+
+- hosts: edf
+  roles:
+    - common
+
+- hosts: handy
+  roles:
+    - common
+
 - hosts: kimsufi
   roles:
     - common
     - reverse_proxy
     - seedbox
-
-- hosts: cuddles
-  roles:
-    - common
-    - web
