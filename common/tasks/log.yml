@@ -1,0 +1,43 @@
+- name: install mosquitto-clients
+  become: true
+  apt:
+    name: mosquitto-clients
+    state: present
+
+- name: copy send_syslog script
+  become: true
+  copy:
+    src: send_syslog
+    dest: /usr/local/bin/
+    mode: 0755
+
+- stat:
+    path: /etc/syslog-ng/syslog-ng.conf
+  register: syslogng
+
+- name: syslog-ng configuration
+  become: true
+  blockinfile:
+    dest: /etc/syslog-ng/syslog-ng.conf
+    block: |
+      log { source(src); destination(mqtt_all); };
+      destination mqtt_all {
+          program(
+              "/usr/local/bin/send_syslog"
+              template("{\"level\": \"${LEVEL}\", \"priority\": ${PRI}, \"facility\": \"${FACILITY}\", \"date\": \"${ISODATE}\", \"host\": \"${HOST}\", \"message\": \"${MSGONLY}\", \"pid\": ${PID}, \"program\": \"${PROGRAM}\"}\n")
+          );
+      };
+  when: syslogng.stat.exists == True
+  notify: syslog-ng reload
+
+- stat:
+    path: /etc/rsyslog.conf
+  register: rsyslog
+
+- name: rsyslog configuration
+  become: true
+  copy:
+    src: mqtt.conf
+    dest: /etc/rsyslog.d/
+  when: rsyslog.stat.exists == True
+  notify: rsyslog reload

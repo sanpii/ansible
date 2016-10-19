@@ -3,3 +3,15 @@
   service:
     name: fail2ban
     state: restarted
+
+- name: syslog-ng reload
+  become: true
+  service:
+    name: syslog-ng
+    state: restarted
+
+- name: rsyslog reload
+  become: true
+  service:
+    name: rsyslog
+    state: restarted

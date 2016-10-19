@@ -1,5 +1,6 @@
 - include: update.yml
 - include: smartctl.yml
 - include: fail2ban.yml
+- include: log.yml
 - include: cron-apt.yml
   when: ansible_os_family == "Debian"

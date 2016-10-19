@@ -1,0 +1,14 @@
+CREATE TABLE log (
+    created TIMESTAMP WITH TIME ZONE,
+    level CHARACTER VARYING NOT NULL,
+    priority INTEGER,
+    facility CHARACTER VARYING NOT NULL,
+    date TIMESTAMP WITH TIME ZONE,
+    host CHARACTER VARYING NOT NULL,
+    message CHARACTER VARYING NOT NULL,
+    pid CHARACTER VARYING NOT NULL,
+    program CHARACTER VARYING NOT NULL
+);
+
+CREATE INDEX log_level_idx ON log (level);
+CREATE INDEX log_host_idx ON log (host);
