@@ -1,6 +1,7 @@
 - hosts: cam
   roles:
     - common
+    - cam
 
 - hosts: cuddles
   roles:
