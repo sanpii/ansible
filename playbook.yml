@@ -16,3 +16,7 @@
     - common
     - reverse_proxy
     - seedbox
+
+- hosts: vmc
+  roles:
+    - common
