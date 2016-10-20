@@ -1,0 +1,42 @@
+<sources>
+    <programs>
+        <default pathversion="1"></default>
+    </programs>
+    <video>
+        <default pathversion="1"></default>
+        <source>
+            <name>films</name>
+            <path pathversion="1">nfs://192.168.1.1/media/data/films/</path>
+            <allowsharing>true</allowsharing>
+        </source>
+        <source>
+            <name>torrent</name>
+            <path pathversion="1">nfs://192.168.1.1/media/data/torrent/</path>
+            <allowsharing>true</allowsharing>
+        </source>
+        <source>
+            <name>series</name>
+            <path pathversion="1">nfs://192.168.1.1/media/data/series/</path>
+            <allowsharing>true</allowsharing>
+        </source>
+    </video>
+    <music>
+        <default pathversion="1"></default>
+        <source>
+            <name>musique</name>
+            <path pathversion="1">nfs://192.168.1.1/media/data/musique/</path>
+            <allowsharing>true</allowsharing>
+        </source>
+    </music>
+    <pictures>
+        <default pathversion="1"></default>
+        <source>
+            <name>photo</name>
+            <path pathversion="1">nfs://192.168.1.1/media/data/photo/</path>
+            <allowsharing>true</allowsharing>
+        </source>
+    </pictures>
+    <files>
+        <default pathversion="1"></default>
+    </files>
+</sources>

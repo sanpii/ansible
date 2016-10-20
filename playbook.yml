@@ -22,6 +22,10 @@
     - reverse_proxy
     - seedbox
 
+- hosts: tv-ch1 tv-ch2 tv-salon
+  roles:
+    - tv
+
 - hosts: vmc
   roles:
     - common

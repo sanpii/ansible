@@ -1,0 +1,9 @@
+- name: copy advanced configuration
+  template:
+    src: files/advancedsettings.xml
+    dest: ~/.kodi/userdata/
+
+- name: copy sources configuration
+  copy:
+    src: sources.xml
+    dest: ~/.kodi/userdata/
