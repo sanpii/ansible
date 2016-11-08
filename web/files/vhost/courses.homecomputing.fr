@@ -1,0 +1,29 @@
+server {
+    listen 80;
+    listen 443 ssl http2;
+    server_name courses.homecomputing.fr;
+    root /home/git/public_repositories/coloc/current/web;
+    index index.php;
+
+    ssl on;
+    ssl_certificate /etc/letsencrypt/live/courses.homecomputing.fr/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/courses.homecomputing.fr/privkey.pem;
+
+    location /.well-known {
+        add_header Content-Type application/jose+json;
+        root /tmp/letsencrypt/public_html/;
+    }
+
+    location / {
+        try_files $uri $uri/ @rewrite;
+    }
+
+    location @rewrite {
+        rewrite ^/(.*)$ /index.php/$1;
+    }
+
+    location ~ \.php(/|$) {
+        include /etc/nginx/fastcgi_params;
+        fastcgi_pass unix:/run/php/php7.0-fpm/git;
+    }
+}

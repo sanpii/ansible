@@ -1,0 +1,21 @@
+server {
+    listen 80;
+    listen 443 ssl http2;
+    server_name search.homecomputing.fr;
+    server_name ayobcipurplcm6ba.onion;
+    root /home/sanpi/public_html/searx/;
+
+    ssl on;
+    ssl_certificate /etc/letsencrypt/live/search.homecomputing.fr/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/search.homecomputing.fr/privkey.pem;
+
+    location /.well-known {
+        add_header Content-Type application/jose+json;
+        root /tmp/letsencrypt/public_html/;
+    }
+
+    location / {
+            include uwsgi_params;
+            uwsgi_pass unix:/run/uwsgi/app/searx/socket;
+    }
+}

@@ -1,0 +1,21 @@
+server {
+    listen 80;
+    listen 443 ssl http2;
+    server_name paste.homecomputing.fr;
+    root /home/sanpi/public_html/zerobin/;
+    index index.php;
+
+    ssl on;
+    ssl_certificate /etc/letsencrypt/live/paste.homecomputing.fr/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/paste.homecomputing.fr/privkey.pem;
+
+    location /.well-known {
+        add_header Content-Type application/jose+json;
+        root /tmp/letsencrypt/public_html/;
+    }
+
+    location ~ \.php$ {
+        include /etc/nginx/fastcgi_params;
+        fastcgi_pass unix:/run/php/php7.0-fpm/sanpi;
+    }
+}

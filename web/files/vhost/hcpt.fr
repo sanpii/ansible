@@ -1,0 +1,38 @@
+server {
+    listen 80;
+    listen 443 ssl http2;
+    server_name hcpt.fr;
+    root /home/sanpi/public_html/yourls;
+    index index.php;
+
+    ssl on;
+    ssl_certificate /etc/letsencrypt/live/hcpt.fr/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/hcpt.fr/privkey.pem;
+
+    location /.well-known {
+        add_header Content-Type application/jose+json;
+        root /tmp/letsencrypt/public_html/;
+    }
+
+    location / {
+        try_files $uri $uri/ @rewrite;
+    }
+
+    location @rewrite {
+        rewrite ^/([0-9a-z\-]+)$ /yourls-go.php?id=$1 last;
+        rewrite ^/([0-9a-z\-]+)\+$ /yourls-infos.php?id=$1 last;
+    }
+
+    location ~ \.php$ {
+        include fastcgi_params;
+        fastcgi_pass unix:/run/php/php7.0-fpm/sanpi;
+    }
+}
+
+server {
+    listen 80;
+    listen 443;
+    server_name www.hcpt.fr;
+
+    rewrite ^(.*)$ http://hcpt.fr$1 permanent;
+}

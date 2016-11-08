@@ -1,0 +1,22 @@
+server {
+    listen 80;
+    listen 443 ssl http2;
+    server_name stats.quanthome.fr;
+    server_name s.quanthome.fr;
+    root /home/sanpi/public_html/piwik;
+    index index.php;
+
+    ssl on;
+    ssl_certificate /etc/letsencrypt/live/stats.quanthome.fr/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/stats.quanthome.fr/privkey.pem;
+
+    location /.well-known {
+        add_header Content-Type application/jose+json;
+        root /tmp/letsencrypt/public_html/;
+    }
+
+    location ~ \.php(/|$) {
+        include /etc/nginx/fastcgi_params;
+        fastcgi_pass unix:/run/php/php7.0-fpm/sanpi;
+    }
+}

@@ -1,0 +1,43 @@
+server {
+    listen 80;
+    listen 443 ssl http2;
+    server_name git.homecomputing.fr;
+    root /home/git/public_repositories/gitlist/current;
+    index index.php;
+
+    ssl on;
+    ssl_certificate /etc/letsencrypt/live/git.homecomputing.fr/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/git.homecomputing.fr/privkey.pem;
+
+    location = /robots.txt {
+        allow all;
+        log_not_found off;
+        access_log off;
+    }
+
+    location /.well-known {
+        add_header Content-Type application/jose+json;
+        root /tmp/letsencrypt/public_html/;
+    }
+
+    location / {
+        try_files $uri @gitlist;
+    }
+
+    location ~* \.(js|css|png|jpg|jpeg|gif|ico)$ { 
+        add_header Vary "Accept-Encoding";
+        expires max;
+        try_files $uri @gitlist;
+        tcp_nodelay off;
+        tcp_nopush on;
+    }
+
+    location @gitlist {
+        rewrite ^/.*$ /index.php;
+    }
+
+    location ~ ^/index.php$ {
+        include /etc/nginx/fastcgi_params;
+        fastcgi_pass unix:/run/php/php7.0-fpm/git;
+    }
+}

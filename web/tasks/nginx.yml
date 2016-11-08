@@ -18,6 +18,12 @@
   copy: src=tls.conf dest=/etc/nginx/conf.d/
   notify: nginx reload
 
+- name: copy vhosts
+  become: true
+  copy: src={{ item }} dest=/etc/nginx/sites-enabled/
+  with_fileglob:
+    - vhost/*
+
 - name: nginx jail for fail2ban
   become: true
   blockinfile:

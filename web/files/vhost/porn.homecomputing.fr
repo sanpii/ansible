@@ -1,0 +1,16 @@
+server {
+    listen 80;
+    listen 443 ssl http2;
+    server_name porn.homecomputing.fr;
+    root /media/data/share/sanpi/files/porn/;
+    autoindex on;
+
+    ssl on;
+    ssl_certificate /etc/letsencrypt/live/porn.homecomputing.fr/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/porn.homecomputing.fr/privkey.pem;
+
+    location /.well-known {
+        add_header Content-Type application/jose+json;
+        root /tmp/letsencrypt/public_html/;
+    }
+}

@@ -1,0 +1,24 @@
+server {
+    listen 80 default_server;
+
+    location /.well-known/acme-challenge {
+        add_header Content-Type application/jose+json;
+        root /tmp/letsencrypt/public_html/;
+    }
+
+    location / {
+        return 404;
+    }
+}
+
+server {
+    listen 443 default_server ssl;
+    server_name homecomputing.fr;
+    server_name www.homecomputing.fr;
+
+    ssl on;
+    ssl_certificate /etc/letsencrypt/live/homecomputing.fr/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/homecomputing.fr/privkey.pem;
+
+    return 404;
+}

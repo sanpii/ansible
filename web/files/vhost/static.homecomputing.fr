@@ -1,0 +1,16 @@
+server {
+    listen 80;
+    listen 443 ssl http2;
+    server_name static.homecomputing.fr;
+    root /home/git/public_html/;
+    index index.html;
+
+    ssl on;
+    ssl_certificate /etc/letsencrypt/live/static.homecomputing.fr/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/static.homecomputing.fr/privkey.pem;
+
+    location /.well-known {
+        add_header Content-Type application/jose+json;
+        root /tmp/letsencrypt/public_html/;
+    }
+}

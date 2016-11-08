@@ -1,0 +1,16 @@
+server {
+    listen 80;
+    listen 443 ssl http2;
+    server_name osm.homecomputing.fr;
+    root /home/sanpi/public_html/osm;
+    index index.html;
+
+    ssl on;
+    ssl_certificate /etc/letsencrypt/live/osm.homecomputing.fr/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/osm.homecomputing.fr/privkey.pem;
+
+    location /.well-known {
+        add_header Content-Type application/jose+json;
+        root /tmp/letsencrypt/public_html/;
+    }
+}
