@@ -1,50 +1,22 @@
+- include: common/tasks/nginx.yml
+
 - name: copy nginx CSP configuration
   become: true
-  copy: src=csp.conf dest=/etc/nginx/conf.d/
+  copy:
+    src: csp.conf
+    dest: /etc/nginx/conf.d/
   notify: nginx reload
 
 - name: copy nginx X-Content-Type-Options configuration
   become: true
-  copy: src=cto.conf dest=/etc/nginx/conf.d/
+  copy:
+    src: cto.conf
+    dest: /etc/nginx/conf.d/
   notify: nginx reload
 
 - name: copy nginx X-Frame-Options configuration
   become: true
-  copy: src=xfo.conf dest=/etc/nginx/conf.d/
+  copy:
+    src: xfo.conf
+    dest: /etc/nginx/conf.d/
   notify: nginx reload
-
-- name: copy nginx TLS configuration
-  become: true
-  copy: src=tls.conf dest=/etc/nginx/conf.d/
-  notify: nginx reload
-
-- name: copy vhosts
-  become: true
-  copy: src={{ item }} dest=/etc/nginx/sites-enabled/
-  with_fileglob:
-    - vhost/*
-
-- name: nginx jail for fail2ban
-  become: true
-  blockinfile:
-    dest: /etc/fail2ban/jail.conf
-    block: |
-      [nginx-req-limit]
-
-      enabled = true
-      filter = nginx-req-limit
-      action = iptables-multiport[name=ReqLimit, port="http,https", protocol=tcp]
-      logpath = /var/log/nginx/*error.log
-      findtime = 600
-      bantime = 7200
-      maxretry = 10
-
-      [nginx-conn-limit]
-
-      enabled = true
-      filter = nginx-conn-limit
-      action = iptables-multiport[name=ConnLimit, port="http,https", protocol=tcp]
-      logpath = /var/log/nginx/*error.log
-      findtime = 300
-      bantime = 7200
-      maxretry = 100
