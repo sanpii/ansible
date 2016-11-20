@@ -1,0 +1,5 @@
+- name: ngircd restart
+  become: true
+  service:
+    name: ngircd
+    state: restarted
