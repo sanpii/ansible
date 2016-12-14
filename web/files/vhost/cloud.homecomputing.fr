@@ -30,9 +30,9 @@ server {
     client_max_body_size 10G; # set max upload size
     fastcgi_buffers 64 4K;
 
-    rewrite ^/caldav(.*)$ /remote.php/caldav$1 redirect;
-    rewrite ^/carddav(.*)$ /remote.php/carddav$1 redirect;
-    rewrite ^/webdav(.*)$ /remote.php/webdav$1 redirect;
+    rewrite ^/caldav(.*)$ /remote.php/dav$1 redirect;
+    rewrite ^/carddav(.*)$ /remote.php/dav$1 redirect;
+    rewrite ^/webdav(.*)$ /remote.php/dav$1 redirect;
 
     index index.php;
     error_page 403 /core/templates/403.php;
