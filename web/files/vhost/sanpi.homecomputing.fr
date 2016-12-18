@@ -4,7 +4,7 @@ server {
     server_name sanpi.homecomputing.fr;
     server_name sanpii6qqjdzws77.onion;
     server_name sanpi.hcptwrrqn6iuhmsv.onion;
-    root /home/git/public_html/blog;
+    root /home/git/public_html/blog/current;
     index index.html;
 
     ssl on;

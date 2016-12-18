@@ -2,7 +2,7 @@ server {
     listen 80;
     listen 443 ssl http2;
     server_name blog.quanthome.fr;
-    root /home/git/public_html/quanthome;
+    root /home/git/public_html/quanthome/current;
     index index.html;
 
     ssl on;
