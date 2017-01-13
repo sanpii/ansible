@@ -9,6 +9,7 @@
     - web
     - irc
     - dns
+    - database
 
 - hosts: edf
   roles:

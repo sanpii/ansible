@@ -1,0 +1,17 @@
+- name: mysql reload
+  become: true
+  service:
+    name: mariadb
+    state: reloaded
+
+- name: postgresql reload
+  become: true
+  service:
+    name: postgresql
+    state: reloaded
+
+- name: uwsgi reload
+  become: true
+  service:
+    name: uwsgi
+    state: reloaded

@@ -1,0 +1,12 @@
+- name: install mysql server
+  become: true
+  apt:
+    name: mariadb-server
+    state: present
+
+- name: copy mysql configuration
+  become: true
+  copy:
+    src: mysql.cnf
+    dest: /etc/mysql/conf.d/custom.cnf
+  notify: mysql reload
