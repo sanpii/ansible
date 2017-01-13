@@ -11,6 +11,7 @@
     - dns
     - database
     - voip
+    - backup
 
 - hosts: edf
   roles:
