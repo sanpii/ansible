@@ -10,6 +10,7 @@
     - irc
     - dns
     - database
+    - voip
 
 - hosts: edf
   roles:

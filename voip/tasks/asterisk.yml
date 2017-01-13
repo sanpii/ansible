@@ -1,0 +1,17 @@
+- name: install asterisk
+  become: true
+  apt:
+    name: asterisk
+    state: present
+
+- name: copy asterisk configuration
+  become: true
+  template:
+    src: "{{ item }}"
+    dest: /etc/asterisk/
+    mode: 0640
+    owner: asterisk
+    group: asterisk
+  with_fileglob:
+    - voip/files/*
+  notify: asterisk reload

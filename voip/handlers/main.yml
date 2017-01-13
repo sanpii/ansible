@@ -1,0 +1,5 @@
+- name: asterisk reload
+  become: true
+  service:
+    name: asterisk
+    state: reloaded
