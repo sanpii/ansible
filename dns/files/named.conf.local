@@ -1,0 +1,32 @@
+//
+// Do any local configuration here
+//
+
+// Consider adding the 1918 zones here, if they are not used in your
+// organization
+//include "/etc/bind/zones.rfc1918";
+
+zone "homecomputing.fr" {
+    type master;
+    file "homecomputing.fr.zone";
+};
+
+zone "hcpt.fr" {
+    type master;
+    file "hcpt.fr.zone";
+};
+
+zone "quanthome.fr" {
+    type master;
+    file "quanthome.fr.zone";
+};
+
+zone "estcequilyafirstjeudicettesemaine.fr" {
+    type master;
+    file "estcequilyafirstjeudicettesemaine.fr.zone";
+};
+
+zone "joseph.pro" {
+    type master;
+    file "joseph.pro.zone";
+};

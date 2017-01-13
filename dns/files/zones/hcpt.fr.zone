@@ -1,0 +1,20 @@
+$TTL 86400
+@    IN  SOA ns postmaster (2013062621 42000 3600 1209600 3600)
+@               NS     ns.hcpt.fr.
+@               NS     ns2.hcpt.fr.
+@               MX 1   mail
+       600  IN  TXT    "v=spf1 a mx ~all"
+
+                A      80.67.177.91
+*               A      80.67.177.91
+ns              A      80.67.177.91
+ns2             A      91.121.180.148
+mail            A      80.67.177.91
+
+www             CNAME  hcpt.fr.
+
+t            IN NS     tn
+tn              A      91.121.180.148
+
+_domainkey      TXT    "t=y; o=~;"
+dkim._domainkey TXT    "k=rsa; p=MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCgW+Pgfb9ORu44lehONrmfyqYJJ74Y0ROwxApFHaY2PgmPgycQAlitR4LCUUaNkrSasKpd00QL3tWBOxpJAMXF8bo7aHG2PrkaGN9gdaivcgOO1vF9ajkrCKrPLu8CthCdqCOLNS4aKSm3CoI8EJ2IlDeKdFbHPPB9YFO2DDgQGQIDAQAB;"

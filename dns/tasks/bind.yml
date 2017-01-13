@@ -1,0 +1,24 @@
+- name: install bind9
+  become: true
+  apt:
+    name: bind9
+    state: present
+
+- name: copy bind9 configuration
+  become: true
+  copy:
+    src: "{{ item }}"
+    dest: /etc/bind/
+  with_items:
+    - named.conf.local
+    - named.conf.options
+  notify: bind9 reload
+
+- name: copy zones configuration
+  become: true
+  copy:
+    src: "{{ item }}"
+    dest: /var/cache/bind/
+  with_fileglob:
+    - dns/files/zones/*
+  notify: bind9 reload
