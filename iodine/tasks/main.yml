@@ -1,0 +1,34 @@
+- name: install iodine
+  become: true
+  apt:
+    name: iodine
+    state: present
+
+- name: copy iodine configuration
+  become: true
+  template:
+    src: iodine/files/iodine
+    dest: /etc/default/
+    mode: 0600
+  notify: iodine restart
+
+- name: reconfigure bind9 recursion
+  become: true
+  lineinfile:
+    dest: /etc/bind/named.conf.options
+    regexp: '^    allow-recursion'
+    line: '    allow-recursion { any; };'
+  notify: bind9 reload
+
+- name: reconfigure bind9 zone
+  become: true
+  blockinfile:
+    dest: /etc/bind/named.conf.local
+    block: |
+      zone "t.hcpt.fr" {
+          type forward;
+          forwarders{
+              127.0.0.1 port 5353;
+          };
+      };
+  notify: bind9 reload

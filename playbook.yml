@@ -27,6 +27,7 @@
     - reverse_proxy
     - seedbox
     - backup_dns
+    - iodine
 
 - hosts: tv-ch1 tv-ch2 tv-salon
   roles:
