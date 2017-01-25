@@ -11,6 +11,8 @@ server {
     ssl_certificate /etc/letsencrypt/live/sanpi.homecomputing.fr/fullchain.pem;
     ssl_certificate_key /etc/letsencrypt/live/sanpi.homecomputing.fr/privkey.pem;
 
+    rewrite ^/feeds/Auto-hebergement.atom.xml$ /feeds/categories/auto-hebergement.rss.xml permanent;
+
     location /.well-known/acme-challenge {
         add_header Content-Type application/jose+json;
         root /tmp/letsencrypt/public_html/;
