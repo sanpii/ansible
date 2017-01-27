@@ -1,8 +1,9 @@
 $TTL 86400
-@    IN  SOA ns postmaster (2013062621 42000 3600 1209600 3600)
+@    IN  SOA ns postmaster (2013062622 42000 3600 1209600 3600)
 @               NS     ns.hcpt.fr.
 @               NS     ns2.hcpt.fr.
 @               MX 1   mail
+@               MX 2   mail2
        600  IN  TXT    "v=spf1 a mx ~all"
 
                 A      80.67.177.91
@@ -10,6 +11,7 @@ $TTL 86400
 ns              A      80.67.177.91
 ns2             A      91.121.180.148
 mail            A      80.67.177.91
+mail2           A      91.121.180.148
 
 www             CNAME  hcpt.fr.
 

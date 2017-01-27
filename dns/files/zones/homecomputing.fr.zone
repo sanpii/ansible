@@ -1,8 +1,9 @@
 $TTL 86400
-@   IN  SOA ns postmaster (2013062622 42000 3600 1209600 3600)
+@   IN  SOA ns postmaster (2013062623 42000 3600 1209600 3600)
 @               NS     ns.homecomputing.fr.
 @               NS     ns2.homecomputing.fr.
 @               MX 1   mail
+@               MX 2   mail2
        600  IN  TXT    "v=spf1 a mx ~all"
 
                 A      80.67.177.91
@@ -13,6 +14,7 @@ horaires        A      91.121.180.148
 ns              A      80.67.177.91
 ns2             A      91.121.180.148
 mail            A      80.67.177.91
+mail2           A      91.121.180.148
 
 www             CNAME  homecomputing.fr.
 
