@@ -1,0 +1,38 @@
+- name: install tor
+  become: true
+  apt:
+    name: tor
+    state: present
+
+- name: tor configuration
+  become: true
+  blockinfile:
+    dest: /etc/tor/torrc
+    block: |
+      HiddenServiceDir /var/lib/tor/hidden_services/estcequilyafirstjeudicettesemaine.fr
+      HiddenServicePort 80 127.0.0.1:80
+
+      HiddenServiceDir /var/lib/tor/hidden_services/search.homecomputing.fr
+      HiddenServicePort 80 127.0.0.1:80
+
+      HiddenServiceDir /var/lib/tor/hidden_services/sanpi.homecomputing.fr
+      HiddenServicePort 80 127.0.0.1:80
+
+      HiddenServiceDir /var/lib/tor/hidden_services/stats.homecomputing.fr
+      HiddenServicePort 80 127.0.0.1:80
+
+      HiddenServiceDir /var/lib/tor/hidden_services/homecomputing.fr
+      HiddenServicePort 80 127.0.0.1:80
+
+      HiddenServiceDir /var/lib/tor/hidden_services/ssh
+      HiddenServicePort 22 127.0.0.1:22
+  notify: tor reload
+
+- name: copy tor hidden services
+  become: true
+  copy:
+    src: hidden_services
+    dest: /var/lib/tor/
+    owner: debian-tor
+    mode: 'g-rwx,o-rwx'
+  notify: tor reload
