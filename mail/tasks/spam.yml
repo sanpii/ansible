@@ -1,0 +1,27 @@
+- name: install dkim
+  become: true
+  apt:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - opendkim
+    - opendkim-tools
+
+- name: install rspamd
+  become: true
+  apt:
+    name: rspamd
+    state: present
+
+- name: install rmilter
+  become: true
+  apt:
+    name: rmilter
+    state: present
+
+- name: copy rmilter configuration
+  become: true
+  copy:
+    src: rmilter.conf
+    dest: /etc
+  notify: rmilter restart

@@ -6,6 +6,7 @@
 - hosts: cuddles
   roles:
     - common
+    - mail
     - web
     - irc
     - dns

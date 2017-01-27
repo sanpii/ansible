@@ -1,12 +1,27 @@
 - name: install postfix
   become: true
   apt:
-    name: postfix
+    name: "{{ item }}"
     state: present
+  with_items:
+    - postfix
+    - postfix-pcre
 
 - name: copy postfix configuration
   become: true
   copy:
-    src: main.cf
+    src: "{{ item }}"
     dest: /etc/postfix/
+  with_items:
+    - main.cf
+    - header_checks
+    - sender_canonical
+    - smtp_reply_filter
   notify: postfix reload
+
+- name: copy aliases configuration
+  become: true
+  copy:
+    src: aliases
+    dest: /etc/
+  notify: newaliases

@@ -1,0 +1,15 @@
+- name: install dovecot
+  apt:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - dovecot-imapd
+    - dovecot-managesieved
+    - dovecot-sieve
+
+- name: copy dovecot configuration
+  become: true
+  copy:
+    src: dovecot.conf
+    dest: /etc/dovecot/conf.d/99-custom.conf
+  notify: dovecot reload

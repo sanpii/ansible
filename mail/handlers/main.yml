@@ -3,3 +3,19 @@
   service:
     name: postfix
     state: reloaded
+
+- name: dovecot reload
+  become: true
+  service:
+    name: dovecot
+    state: reloaded
+
+- name: newaliases
+  become: true
+  command: newaliases
+
+- name: rmilter restart
+  become: true
+  service:
+    name: rmilter
+    state: restarted

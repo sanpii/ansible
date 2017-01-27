@@ -1,0 +1,46 @@
+# /etc/aliases
+mailer-daemon: postmaster
+postmaster: root
+nobody: root
+hostmaster: root
+usenet: root
+news: root
+webmaster: root
+www: root
+ftp: root
+abuse: root
+noc: root
+security: root
+root: sanpi
+no-reply: www
+www-data: www
+clamav: root
+
+nicolas.joseph: sanpi
+sanpii: sanpi
+mushy: sanpi
+splafy: sanpi
+git: sanpi
+maison-abbaretz: sanpi, sandra.mery
+nj: sanpi
+unphoton: sanpi
+media: sanpi
+horaires: sanpi
+nicolas: sanpi
+
+sandra.mery: sandra.mery1006@gmail.com
+sandra-mery: sandra.mery
+sm: sandra.mery
+
+nj_boursorama: nj
+nj_superu: nj
+nj_leclerc: nj
+nj_samsung: nj
+nj__eni: nj
+nj_macif: nj
+nj-pole-emploi: nj
+njgrosbill: sanpi
+chaostank: sanpi
+spam: sanpi
+nj-quelle-sante: sanpi
+wifilib: sanpi
