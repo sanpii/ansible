@@ -17,6 +17,7 @@
     - backup
     - tor
     - xmpp
+    - printer
 
 - hosts: edf
   roles:
