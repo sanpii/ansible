@@ -5,3 +5,6 @@
 - include: pam.yml
 - include: cron-apt.yml
   when: ansible_os_family == "Debian"
+- include: video-off.yml
+  tags:
+    - headless

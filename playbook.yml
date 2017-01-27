@@ -2,6 +2,8 @@
   roles:
     - common
     - cam
+  tags:
+    - headless
 
 - hosts: cuddles
   roles:
@@ -18,6 +20,8 @@
 - hosts: edf
   roles:
     - common
+  tags:
+    - headless
 
 - hosts: handy
   roles:
@@ -39,3 +43,5 @@
 - hosts: vmc
   roles:
     - common
+  tags:
+    - headless

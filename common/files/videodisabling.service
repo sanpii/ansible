@@ -1,0 +1,11 @@
+[Unit]
+Description=Switches off video output to save energy
+
+[Service]
+Type=simple
+ExecStart=/opt/vc/bin/tvservice --off
+ExecStop=/opt/vc/bin/tvservice --preferred
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target

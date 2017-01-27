@@ -1,0 +1,30 @@
+- stat:
+    path: /opt/vc/bin/tvservice
+  register: tvservice
+
+- stat:
+    path: /bin/systemctl
+  register: systemd
+
+- name: install videodisabling service
+  become: true
+  copy:
+    src: videodisabling.service
+    dest: /etc/systemd/system
+  when: tvservice.stat.exists == True and systemd.stat.exists == True
+
+- name: install videodisabling service
+  become: true
+  copy:
+    src: videodisabling
+    dest: /etc/init.d
+    mode: "0755"
+  when: tvservice.stat.exists == True and systemd.stat.exists == False
+
+- name: start videodisabling service
+  become: true
+  service:
+    name: videodisabling
+    state: started
+    enabled: yes
+  when: tvservice.stat.exists == True
