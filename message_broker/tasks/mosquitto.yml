@@ -1,0 +1,17 @@
+- name: install mosquitto
+  become: true
+  apt:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - mosquitto
+    - mosquitto-clients
+
+- name: copy mosquitto configuration
+  become: true
+  copy:
+    src: "{{ item }}"
+    dest: /etc/mosquitto/conf.d/
+  with_fileglob:
+    - '*'
+  notify: mosquitto reload

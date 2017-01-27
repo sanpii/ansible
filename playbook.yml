@@ -18,6 +18,7 @@
     - tor
     - xmpp
     - printer
+    - message_broker
 
 - hosts: edf
   roles:

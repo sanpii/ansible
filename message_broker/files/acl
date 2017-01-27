@@ -1,0 +1,36 @@
+user dashboard
+topic read domotic/#
+topic write domotic/vmc/state
+topic write cat/food/serve
+
+user dispenser
+topic write cat/food
+topic read cat/food/serve
+
+user edf
+topic write domotic/teleinfo
+
+user log
+topic write system/log
+
+user network
+topic write network/connected_device
+
+user pg
+topic read #
+
+user sensor
+topic write domotic/temperature
+topic write domotic/humidity
+
+user test
+topic read test/#
+topic write test/#
+
+user vmc
+topic write domotic/vmc
+topic readwrite domotic/vmc/state
+topic read domotic/weather
+
+user weather
+topic write domotic/weather
