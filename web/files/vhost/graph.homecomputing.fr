@@ -1,17 +1,22 @@
 server {
     listen 80;
+    server_name graph.homecomputing.fr;
+
+    location /.well-known {
+        add_header Content-Type application/jose+json;
+        root /tmp/letsencrypt/public_html/;
+    }
+
+    return 301 https://$server_name$request_uri;
+}
+
+server {
     listen 443 ssl http2;
     server_name graph.homecomputing.fr;
 
     ssl on;
     ssl_certificate /etc/letsencrypt/live/graph.homecomputing.fr/fullchain.pem;
     ssl_certificate_key /etc/letsencrypt/live/graph.homecomputing.fr/privkey.pem;
-
-    location /.well-known {
-        add_header Content-Type application/jose+json;
-        root /tmp/letsencrypt/public_html/;
-	allow all;
-    }
 
     location / {
         proxy_set_header X-Real-IP  $remote_addr;
