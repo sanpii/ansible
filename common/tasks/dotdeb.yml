@@ -1,11 +1,23 @@
 - name: install CA certificat
   become: true
-  apt: name=ca-certificates state=present
+  apt:
+    name: ca-certificates
+    state: present
+
+- name: install apt-transport-https
+  become: true
+  apt:
+    name: apt-transport-https
+    state: present
 
 - name: add dotdeb repository key
   become: true
-  apt_key: url=https://www.dotdeb.org/dotdeb.gpg
+  apt_key:
+    url: https://packages.sury.org/php/apt.gpg
 
 - name: add dotdeb apt repository
   become: true
-  apt_repository: repo='deb http://packages.dotdeb.org jessie all' state=present filename=dotdeb
+  apt_repository:
+    repo: 'deb https://packages.sury.org/php/ jessie main'
+    state: present
+    filename: dotdeb
