@@ -16,6 +16,7 @@
     - voip
     - backup
     - tor
+    - xmpp
 
 - hosts: edf
   roles:

@@ -1,0 +1,24 @@
+- name: install prosody
+  become: true
+  apt:
+    name: prosody
+    state: present
+
+- name: copy prosody vhost
+  become: true
+  copy:
+    src: "{{ item }}"
+    dest: /etc/prosody/conf.d/
+  with_fileglob:
+    - vhost/*
+  notify: prosody reload
+
+- name: copy prosody configuration
+  become: true
+  copy:
+    src: prosody.cfg.lua
+    dest: /etc/prosody/
+    owner: root
+    group: prosody
+    mode: "0640"
+  notify: prosody reload
