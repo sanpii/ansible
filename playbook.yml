@@ -19,6 +19,7 @@
     - xmpp
     - printer
     - message_broker
+    - git
 
 - hosts: edf
   roles:
