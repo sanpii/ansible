@@ -10,7 +10,7 @@ server {
     ssl_certificate /etc/letsencrypt/live/estcequilyafirstjeudicettesemaine.fr/fullchain.pem;
     ssl_certificate_key /etc/letsencrypt/live/estcequilyafirstjeudicettesemaine.fr/privkey.pem;
 
-    location /.well-known {
+    location ^~ /.well-known/acme-challenge {
         add_header Content-Type application/jose+json;
         root /tmp/letsencrypt/public_html/;
     }

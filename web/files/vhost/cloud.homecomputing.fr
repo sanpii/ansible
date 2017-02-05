@@ -2,7 +2,7 @@ server {
     listen 80;
     server_name cloud.homecomputing.fr;
 
-    location /.well-known/acme-challenge {
+    location ^~ /.well-known/acme-challenge {
         add_header Content-Type application/jose+json;
         root /tmp/letsencrypt/public_html;
     }

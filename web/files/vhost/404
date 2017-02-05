@@ -1,7 +1,7 @@
 server {
     listen 80 default_server;
 
-    location /.well-known/acme-challenge {
+    location ^~ /.well-known/acme-challenge {
         add_header Content-Type application/jose+json;
         root /tmp/letsencrypt/public_html/;
     }

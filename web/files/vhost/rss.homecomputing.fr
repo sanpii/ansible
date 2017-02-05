@@ -2,12 +2,14 @@ server {
     listen 80;
     server_name rss.homecomputing.fr;
 
-    location /.well-known {
+    location ^~ /.well-known/acme-challenge {
         add_header Content-Type application/jose+json;
         root /tmp/letsencrypt/public_html/;
     }
 
-    return 301 https://$server_name$request_uri;
+    location / {
+        return 301 https://$server_name$request_uri;
+    }
 }
 
 server {
