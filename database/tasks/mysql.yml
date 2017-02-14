@@ -1,6 +1,6 @@
 - name: install mysql server
   become: true
-  apt:
+  package:
     name: mariadb-server
     state: present
 

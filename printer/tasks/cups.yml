@@ -1,6 +1,6 @@
 - name: install cups
   become: true
-  apt:
+  package:
     name: cups
     state: present
 

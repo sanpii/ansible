@@ -1,6 +1,6 @@
 - name: install transmission
   become: true
-  apt:
+  package:
     name: transmission-daemon
     state: present
 

@@ -1,6 +1,6 @@
 - name: install smartctl
   become: true
-  apt:
+  package:
     name: smartmontools
     state: present
 

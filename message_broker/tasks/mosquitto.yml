@@ -1,6 +1,6 @@
 - name: install mosquitto
   become: true
-  apt:
+  package:
     name: "{{ item }}"
     state: present
   with_items:

@@ -1,6 +1,6 @@
 - name: install asterisk
   become: true
-  apt:
+  package:
     name: asterisk
     state: present
 

@@ -1,6 +1,6 @@
 - name: install borg
   become: true
-  apt:
+  package:
     name: borgbackup
     state: present
 

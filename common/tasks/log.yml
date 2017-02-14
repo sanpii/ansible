@@ -1,6 +1,6 @@
 - name: install mosquitto-clients
   become: true
-  apt:
+  package:
     name: mosquitto-clients
     state: present
 

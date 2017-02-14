@@ -1,6 +1,6 @@
 - name: install iodine
   become: true
-  apt:
+  package:
     name: iodine
     state: present
 

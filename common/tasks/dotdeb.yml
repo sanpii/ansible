@@ -1,12 +1,12 @@
 - name: install CA certificat
   become: true
-  apt:
+  package:
     name: ca-certificates
     state: present
 
 - name: install apt-transport-https
   become: true
-  apt:
+  package:
     name: apt-transport-https
     state: present
 

@@ -1,12 +1,12 @@
 - name: install certbot
   become: true
-  apt:
+  package:
     name: certbot
     state: present
 
 - name: install git
   become: true
-  apt:
+  package:
     name: git
     state: present
 

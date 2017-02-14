@@ -1,6 +1,6 @@
 - name: install ngircd
   become: true
-  apt:
+  package:
     name: ngircd
     state: present
 

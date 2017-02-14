@@ -1,6 +1,6 @@
 - name: install postfix
   become: true
-  apt:
+  package:
     name: postfix
     state: present
 

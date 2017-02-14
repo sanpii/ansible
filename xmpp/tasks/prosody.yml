@@ -1,6 +1,6 @@
 - name: install prosody
   become: true
-  apt:
+  package:
     name: prosody
     state: present
 

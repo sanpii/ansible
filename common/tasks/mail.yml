@@ -1,6 +1,6 @@
 - name: install bsd-mailx
   become: true
-  apt:
+  package:
     name: bsd-mailx
     state: present
   when: ansible_os_family == "Debian"

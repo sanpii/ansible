@@ -1,6 +1,6 @@
 - name: install dkim
   become: true
-  apt:
+  package:
     name: "{{ item }}"
     state: present
   with_items:
@@ -9,13 +9,13 @@
 
 - name: install rspamd
   become: true
-  apt:
+  package:
     name: rspamd
     state: present
 
 - name: install rmilter
   become: true
-  apt:
+  package:
     name: rmilter
     state: present
 

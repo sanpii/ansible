@@ -1,6 +1,6 @@
 - name: install postgresql server
   become: true
-  apt:
+  package:
     name: postgresql
     state: present
 
