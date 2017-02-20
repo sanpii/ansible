@@ -18,9 +18,6 @@
       HiddenServiceDir /var/lib/tor/hidden_services/sanpi.homecomputing.fr
       HiddenServicePort 80 127.0.0.1:80
 
-      HiddenServiceDir /var/lib/tor/hidden_services/stats.homecomputing.fr
-      HiddenServicePort 80 127.0.0.1:80
-
       HiddenServiceDir /var/lib/tor/hidden_services/homecomputing.fr
       HiddenServicePort 80 127.0.0.1:80
 
