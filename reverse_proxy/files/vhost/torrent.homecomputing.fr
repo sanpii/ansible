@@ -20,6 +20,17 @@ server {
     ssl_certificate /etc/letsencrypt/live/torrent.homecomputing.fr/fullchain.pem;
     ssl_certificate_key /etc/letsencrypt/live/torrent.homecomputing.fr/privkey.pem;
 
+    satisfy any;
+    allow 192.168.1.0/24;
+    allow 80.67.177.91/32;
+    deny all;
+    auth_basic "closed site";
+    auth_basic_user_file htpasswd;
+
+    location /download/home/sanpi/torrents {
+        alias /home/sanpi/torrents;
+    }
+
     location / {
         rewrite / /transmission permanent;
     }
