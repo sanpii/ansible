@@ -1,8 +1,23 @@
+- name: add postgresql repository key
+  become: true
+  apt_key:
+    url: 'https://www.postgresql.org/media/keys/ACCC4CF8.asc'
+
+- name: add postgresql apt repository
+  become: true
+  apt_repository:
+    repo: 'deb http://apt.postgresql.org/pub/repos/apt/ jessie-pgdg main'
+    state: present
+    filename: postgresql
+
 - name: install postgresql server
   become: true
   package:
-    name: postgresql
+    name: "{{ item }}"
     state: present
+  with_items:
+    - postgresql
+    - postgresql-contrib-9.6
 
 - name: copy postgresql configuration
   become: true
@@ -22,3 +37,5 @@
   with_items:
     - pg_hba.conf
     - pg_ident.conf
+
+- include: powa.yml

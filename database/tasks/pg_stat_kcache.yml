@@ -1,0 +1,26 @@
+- name: install postgresql-server-dev
+  become: true
+  package:
+    name: postgresql-server-dev-9.6
+    state: present
+
+- name: download pg_stat_kcache sources
+  unarchive:
+    src: https://github.com/dalibo/pg_stat_kcache/archive/REL2_0_3.tar.gz
+    dest: /tmp
+    remote_src: true
+
+- name: compiling pg_stat_kcache
+  make:
+    chdir: /tmp/pg_stat_kcache-REL2_0_3
+
+- name: installing pg_stat_kcache
+  become: true
+  make:
+    chdir: /tmp/pg_stat_kcache-REL2_0_3
+    target: install
+
+- name: remove sources
+  file:
+    path: /tmp/pg_stat_kcache-REL2_0_3
+    state: absent
