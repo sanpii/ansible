@@ -18,6 +18,13 @@
 - include: pg_stat_kcache.yml
   when: pg_stat_kcache.stat.exists == False
 
+- stat:
+    path: /usr/lib/postgresql/9.6/lib/hypopg.so
+  register: hypopg
+
+- include: hypopg.yml
+  when: hypopg.stat.exists == False
+
 - name: create powa user
   become: true
   become_user: postgres
@@ -45,6 +52,7 @@
     - powa
     - pg_qualstats
     - pg_stat_kcache
+    - hypopg
 
 - name: install powa-web
   become: true

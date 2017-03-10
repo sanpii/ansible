@@ -1,0 +1,26 @@
+- name: install postgresql-server-dev
+  become: true
+  package:
+    name: postgresql-server-dev-9.6
+    state: present
+
+- name: download hypopg sources
+  unarchive:
+    src: https://github.com/dalibo/hypopg/archive/1.0.0.tar.gz
+    dest: /tmp
+    remote_src: true
+
+- name: compiling hypopg
+  make:
+    chdir: /tmp/hypopg-1.0.0/
+
+- name: installing hypopg
+  become: true
+  make:
+    chdir: /tmp/hypopg-1.0.0/
+    target: install
+
+- name: remove sources
+  file:
+    path: /tmp/hypopg-1.0.0/
+    state: absent
