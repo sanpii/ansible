@@ -21,6 +21,7 @@
     - message_broker
     - git
     - cloud
+    - nfs
 
 - hosts: edf
   roles:

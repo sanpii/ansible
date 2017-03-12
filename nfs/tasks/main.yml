@@ -1,0 +1,11 @@
+- name: install nfs-kernel-server
+  become: true
+  package:
+    name: nfs-kernel-server
+    state: present
+
+- name: copy nfs configuration
+  become: true
+  copy:
+    src: exports
+    dest: /etc/
