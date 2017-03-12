@@ -1,0 +1,29 @@
+- name: clone nextcloud sources
+  git:
+    repo: https://github.com/nextcloud/server.git
+    dest: ~/public_html/owncloud
+
+- name: create apps2 directory
+  file:
+    path: ~/public_html/owncloud/apps2
+    state: directory
+
+- name: clone app sources
+  git:
+    repo: "https://github.com/nextcloud/{{ item }}.git"
+    dest: "~/public_html/owncloud/apps2/{{ item }}"
+  with_items:
+    - calendar
+    - contacts
+    - files_markdown
+    - files_texteditor
+    - mail
+    - passman
+    - tasks
+
+- name: copy nginx configuration
+  become: true
+  copy:
+    src: cloud.homecomputing.fr
+    dest: /etc/nginx/sites-enabled/
+  notify: nginx reload

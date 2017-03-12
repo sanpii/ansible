@@ -20,6 +20,7 @@
     - printer
     - message_broker
     - git
+    - cloud
 
 - hosts: edf
   roles:

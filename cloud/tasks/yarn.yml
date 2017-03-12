@@ -1,0 +1,20 @@
+- include: nodejs.yml
+
+- name: add yarn repository key
+  become: true
+  apt_key:
+    url: https://dl.yarnpkg.com/debian/pubkey.gpg
+
+- name: add yarn apt repository
+  become: true
+  apt_repository:
+    repo: 'deb https://dl.yarnpkg.com/debian/ stable main'
+    state: present
+    filename: yarn
+
+- name: install yarn
+  become: true
+  apt:
+    name: yarn
+    state: present
+    update_cache: yes
