@@ -17,8 +17,8 @@ server {
     server_name powa.homecomputing.fr;
 
     ssl on;
-    ssl_certificate /etc/letsencrypt/live/homecomputing.fr/fullchain.pem;
-    ssl_certificate_key /etc/letsencrypt/live/homecomputing.fr/privkey.pem;
+    ssl_certificate /etc/letsencrypt/live/powa.homecomputing.fr/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/powa.homecomputing.fr/privkey.pem;
 
     satisfy any;
     allow 192.168.1.0/24;
