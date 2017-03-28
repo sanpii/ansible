@@ -20,7 +20,7 @@ server {
         root /tmp/letsencrypt/public_html/;
     }
 
-    location ~ \.(css|js|png|gif)$ {
+    location ~ \.(css|js|png|gif|ttf|woff)$ {
         add_header Cache-Control "public, max-age=31536000, must-revalidate"; # 1 an
     }
 }
