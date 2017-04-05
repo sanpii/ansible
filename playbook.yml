@@ -13,7 +13,6 @@
     - irc
     - dns
     - database
-    - voip
     - backup
     - tor
     - xmpp
