@@ -1,3 +1,4 @@
+- include: ferm.yml
 - include: smartctl.yml
 - include: fail2ban.yml
 - include: log.yml

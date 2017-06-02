@@ -1,0 +1,26 @@
+- local_action: stat path="{{ role_path }}/files/{{ ansible_hostname }}.conf"
+  register: conf
+  ignore_errors: true
+
+- name: install ferm
+  become: true
+  package:
+    name: ferm
+    state: present
+  when: conf.stat.exists == true
+
+- name: copy ferm configuration
+  become: true
+  copy:
+    src: "ferm/{{ ansible_hostname }}.conf"
+    dest: /etc/ferm/ferm.conf
+  notify: ferm reload
+  when: conf.stat.exists == true
+
+- name: enable ferm service
+  become: true
+  service:
+    name: ferm
+    enabled: true
+    state: started
+  when: conf.stat.exists == true

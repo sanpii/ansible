@@ -15,3 +15,9 @@
   service:
     name: rsyslog
     state: restarted
+
+- name: ferm reload
+  become: true
+  service:
+    name: ferm
+    state: reloaded
