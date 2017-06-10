@@ -39,6 +39,6 @@ server {
 
     location ~ \.php$ {
         include /etc/nginx/fastcgi_params;
-        fastcgi_pass unix:/run/php/php7.0-fpm/sanpi;
+        fastcgi_pass unix:/run/php/php-fpm/sanpi;
     }
 }
