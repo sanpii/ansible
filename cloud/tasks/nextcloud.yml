@@ -2,6 +2,7 @@
   git:
     repo: https://github.com/nextcloud/server.git
     dest: ~/public_html/owncloud
+    update: no
 
 - name: create apps2 directory
   file:
@@ -12,6 +13,7 @@
   git:
     repo: "https://github.com/nextcloud/{{ item }}.git"
     dest: "~/public_html/owncloud/apps2/{{ item }}"
+    update: no
   with_items:
     - calendar
     - contacts
