@@ -3,3 +3,9 @@
   service:
     name: nginx
     state: reloaded
+
+- name: php-fpm reload
+  become: true
+  service:
+    name: php7.1-fpm
+    state: reloaded
