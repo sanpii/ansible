@@ -38,8 +38,12 @@ server {
 }
 
 server {
-    listen 80;
+    listen 443 ssl http2;
     server_name www.hcpt.fr;
+
+    ssl on;
+    ssl_certificate /etc/letsencrypt/live/hcpt.fr/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/hcpt.fr/privkey.pem;
 
     rewrite ^(.*)$ https://hcpt.fr$1 permanent;
 }
