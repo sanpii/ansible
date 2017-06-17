@@ -48,5 +48,6 @@
 - hosts: vmc
   roles:
     - common
+    - vmc
   tags:
     - headless
