@@ -36,3 +36,9 @@
   file:
     dest: /tmp/letsencrypt/public_html/
     state: directory
+
+- name: remove default certbot cron task
+  become: true
+  file:
+    dest: /etc/cron.d/certbot
+    state: absent

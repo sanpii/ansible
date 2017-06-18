@@ -10,13 +10,6 @@
     path: /etc/nginx/sites-enabled/default
     state: absent
 
-- name: remove default ssl configuration
-  become: true
-  lineinfile:
-    dest: /etc/nginx/nginx.conf
-    regexp: "ssl_"
-    state: "absent"
-
 - name: generate dhparam
   become: true
   command: openssl dhparam -out /etc/ssl/private/dh4096.pem 4096
@@ -38,29 +31,3 @@
   with_fileglob:
     - vhost/*
   notify: nginx reload
-
-- name: nginx jail for fail2ban
-  become: true
-  blockinfile:
-    dest: /etc/fail2ban/jail.conf
-    block: |
-      [nginx-req-limit]
-
-      enabled = true
-      filter = nginx-req-limit
-      action = iptables-multiport[name=ReqLimit, port="http,https", protocol=tcp]
-      logpath = /var/log/nginx/*error.log
-      findtime = 600
-      bantime = 7200
-      maxretry = 10
-
-      [nginx-conn-limit]
-
-      enabled = true
-      filter = nginx-conn-limit
-      action = iptables-multiport[name=ConnLimit, port="http,https", protocol=tcp]
-      logpath = /var/log/nginx/*error.log
-      findtime = 300
-      bantime = 7200
-      maxretry = 100
-  notify: fail2ban reload

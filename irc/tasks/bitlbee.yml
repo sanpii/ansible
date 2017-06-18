@@ -1,0 +1,12 @@
+- name: install bitlbee
+  become: true
+  apt:
+    name: bitlbee
+    state: present
+
+- name: restrict listen address to localhost
+  become: true
+  lineinfile:
+    path: /etc/bitlbee/bitlbee.conf
+    regexp: 'DaemonInterface = '
+    line: 'DaemonInterface = 127.0.0.1'

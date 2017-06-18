@@ -1,1 +1,2 @@
 - include: ngircd.yml
+- include: bitlbee.yml
