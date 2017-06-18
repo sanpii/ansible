@@ -10,13 +10,6 @@
     path: /etc/nginx/sites-enabled/default
     state: absent
 
-- name: remove default ssl configuration
-  become: true
-  lineinfile:
-    dest: /etc/nginx/nginx.conf
-    regexp: "ssl_"
-    state: "absent"
-
 - name: generate dhparam
   become: true
   command: openssl dhparam -out /etc/ssl/private/dh4096.pem 4096
