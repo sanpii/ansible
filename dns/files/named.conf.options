@@ -26,4 +26,6 @@ options {
     notify yes;
     allow-transfer { 91.121.180.148; };
     also-notify { 91.121.180.148; };
+
+    minimal-responses yes;
 };
