@@ -1,4 +1,5 @@
-- local_action: stat path="{{ role_path }}/files/{{ ansible_hostname }}.conf"
+- name: check if ferm configuration exists
+  local_action: stat path="{{ role_path }}/files/{{ ansible_hostname }}.conf"
   register: conf
   ignore_errors: true
 
