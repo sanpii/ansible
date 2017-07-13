@@ -1,0 +1,10 @@
+- name: install avahi-daemon
+  package:
+    name: avahi-daemon
+    state: present
+
+- name: start avahi-daemon service
+  service:
+    name: avahi-daemon
+    state: started
+    enabled: yes
