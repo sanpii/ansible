@@ -1,6 +1,3 @@
-- include: domotic/provisioning/vmc
-- include: wifi.yml
-
 - name: copy custom configuration
   copy:
     src: vmc.conf

@@ -49,6 +49,7 @@
 - hosts: vmc
   roles:
     - common
+    - domotic/provisioning/vmc
     - vmc
   tags:
     - headless
