@@ -10,3 +10,6 @@
 - include: video-off.yml
   tags:
     - headless
+- include: wifi.yml
+  tags:
+    - wifi

@@ -27,6 +27,7 @@
     - common
   tags:
     - headless
+    - wifi
 
 - hosts: handy
   roles:
@@ -51,3 +52,4 @@
     - vmc
   tags:
     - headless
+    - wifi

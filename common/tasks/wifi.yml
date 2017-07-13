@@ -1,0 +1,10 @@
+- name: add wifi configuration
+  become: true
+  blockinfile:
+    path: /etc/wpa_supplicant/wpa_supplicant.conf
+    block: |
+      network={
+          ssid="{{ wifi_ssid }}"
+          psk="{{ wifi_psk }}"
+          priority=10
+      }
