@@ -25,6 +25,8 @@
 - hosts: edf
   roles:
     - common
+    - domotic/provisioning/teleinfo
+    - domotic/provisioning/weather
   tags:
     - headless
     - wifi
