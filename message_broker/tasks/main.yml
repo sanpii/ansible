@@ -1,1 +1,15 @@
 - include: mosquitto.yml
+
+- name: modify script path
+  become: true
+  lineinfile:
+    path: "/etc/systemd/system/mqtt2database.service"
+    line: "ExecStart=/home/sanpi/mqtt2database"
+    regexp: '^ExecStart='
+
+- name: modify user
+  become: true
+  lineinfile:
+    path: "/etc/systemd/system/mqtt2database.service"
+    line: "User=sanpi"
+    insertafter: '^ExecStart='

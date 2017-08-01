@@ -17,6 +17,7 @@
     - tor
     - xmpp
     - printer
+    - domotic/provisioning/mqtt
     - message_broker
     - git
     - cloud
