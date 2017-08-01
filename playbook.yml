@@ -12,6 +12,7 @@
     - web
     - irc
     - dns
+    - powa-demo/provisioning/powa
     - database
     - backup
     - tor
