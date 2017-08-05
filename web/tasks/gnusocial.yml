@@ -1,0 +1,12 @@
+- name: install gnusocial service
+  become: true
+  copy:
+    src: gnusocial.service
+    dest: /etc/systemd/system/gnusocial
+
+- name: enable gnusocial service
+  become: true
+  service:
+    name: gnusocial
+    state: started
+    enable: yes

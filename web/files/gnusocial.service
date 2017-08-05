@@ -1,0 +1,17 @@
+[Unit]
+Description=GNU social Daemons
+After=network.target mariadb.service nginx.service php7.1-fpm.service
+
+[Service]
+User=sanpi
+Group=sanpi
+Type=forking
+PIDFile=/tmp/queuedaemon.generic.pid
+Restart=on-failure
+ExecStart=/home/sanpi/public_html/statusnet/scripts/startdaemons.sh
+ExecStop=/home/sanpi/public_html/statusnet/scripts/stopdaemons.sh
+StandardOutput=null
+MemoryLimit=400M
+
+[Install]
+WantedBy=multi-user.target
