@@ -7,21 +7,28 @@
     - opendkim
     - opendkim-tools
 
+- name: add rspamd repository key
+  become: true
+  apt_key:
+    url: https://rspamd.com/apt-stable/gpg.key
+
+- name: add rspamd apt repository
+  become: true
+  apt_repository:
+    repo: 'deb https://rspamd.com/apt-stable/ stretch main'
+    state: present
+    filename: rspamd
+
 - name: install rspamd
   become: true
   package:
     name: rspamd
     state: present
+    update_cache: yes
 
-- name: install rmilter
+- name: start rspamd service
   become: true
-  package:
-    name: rmilter
-    state: present
-
-- name: copy rmilter configuration
-  become: true
-  copy:
-    src: rmilter.conf
-    dest: /etc
-  notify: rmilter restart
+  service:
+    name: rspamd
+    state: started
+    enabled: yes
