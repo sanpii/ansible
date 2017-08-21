@@ -21,6 +21,6 @@ server {
     ssl_certificate_key /etc/letsencrypt/live/nicolas.joseph.pro/privkey.pem;
 
     location / {
-        return 302 $scheme://id.homecomputing.fr/nj$request_uri;
+        return 302 $scheme://id.homecomputing.fr/nj;
     }
 }
