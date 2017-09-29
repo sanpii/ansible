@@ -1,7 +1,7 @@
 - name: install nginx
   become: true
   package:
-    name: nginx
+    name: nginx-extras
     state: present
 
 - name: remove default vhost
