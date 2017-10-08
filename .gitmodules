@@ -1,6 +1,3 @@
 [submodule "domotic"]
 	path = domotic
 	url = https://github.com/sanpii/domotic-box.git
-[submodule "powa-demo"]
-	path = powa-demo
-	url = https://github.com/sanpii/powa-demo.git
