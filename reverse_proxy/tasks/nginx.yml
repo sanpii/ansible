@@ -1,12 +1,27 @@
+- set_fact:
+    http_user: www-data
+  when: ansible_distribution == "Debian"
+
+- set_fact:
+    http_user: http
+  when: ansible_distribution == "Arch Linux"
+
 - include: common/tasks/nginx.yml
 
 - name: create proxy cache directory
   become: true
   file:
     path: /var/cache/nginx
-    owner: www-data
-    group: www-data
+    owner: "{{ http_user }}"
+    group: "{{ http_user }}"
     state: directory
+  notify: nginx reload
+
+- name: copy nginx configuration
+  become: true
+  copy:
+    src: nginx.conf
+    dest: /etc/nginx/
   notify: nginx reload
 
 - name: copy proxy configuration
