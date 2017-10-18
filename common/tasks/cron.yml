@@ -1,0 +1,6 @@
+- name: install cronie
+  become: true
+  package:
+    name: cronie
+    state: present
+  when: ansible_distribution == "Arch Linux"

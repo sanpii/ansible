@@ -4,6 +4,13 @@
     name: nginx-extras
     state: present
 
+- name: start nginx service
+  become: true
+  service:
+    name: nginx
+    state: started
+    enabled: yes
+
 - name: remove default vhost
   become: true
   file:
