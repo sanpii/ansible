@@ -12,15 +12,15 @@
     mode: 0600
   notify: iodine restart
 
-- name: reconfigure bind9 recursion
+- name: reconfigure bind recursion
   become: true
   lineinfile:
     dest: /etc/bind/named.conf.options
     regexp: '^    allow-recursion'
     line: '    allow-recursion { any; };'
-  notify: bind9 reload
+  notify: bind reload
 
-- name: reconfigure bind9 zone
+- name: reconfigure bind zone
   become: true
   blockinfile:
     dest: /etc/bind/named.conf.local
@@ -31,4 +31,4 @@
               127.0.0.1 port 5353;
           };
       };
-  notify: bind9 reload
+  notify: bind reload
