@@ -1,6 +1,13 @@
-- name: install bsd-mailx
+- set_fact:
+    mail_pkg: bsd-mailx
+  when: ansible_distribution == "Debian"
+
+- set_fact:
+    mail_pkg: s-nail
+  when: ansible_distribution == "Arch Linux"
+
+- name: install "{{ mail_pkg }}"
   become: true
   package:
-    name: bsd-mailx
+    name: "{{ mail_pkg }}"
     state: present
-  when: ansible_os_family == "Debian"

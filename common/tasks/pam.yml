@@ -1,6 +1,6 @@
 - stat:
-    path: /etc/systemd/
-  register: systemd
+    path: /etc/pam.d/cron
+  register: pam_cron
 
 - name: reduce pam log
   become: true
@@ -9,4 +9,4 @@
     regexp: '^(@include common-session-noninteractive)'
     line: '#\1'
     backrefs: yes
-  when: systemd.stat.exists == True
+  when: pam_cron.stat.exists == True
