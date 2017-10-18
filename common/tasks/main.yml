@@ -1,3 +1,4 @@
+- include: ca.yml
 - include: avahi.yml
 - include: ferm.yml
 - include: smartctl.yml

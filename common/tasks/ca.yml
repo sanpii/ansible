@@ -1,0 +1,5 @@
+- name: install CA certificat
+  become: true
+  package:
+    name: ca-certificates
+    state: present
