@@ -16,6 +16,6 @@
   cron:
     hour: 3
     minute: 0
-    job: "service gnusocial restart"
+    job: "systemctl restart gnusocial"
     user: root
     cron_file: gnusocial
