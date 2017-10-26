@@ -22,6 +22,7 @@
     - git
     - cloud
     - nfs
+    - forge
 
 - hosts: edf
   roles:

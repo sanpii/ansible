@@ -1,4 +1,4 @@
-- include: nodejs.yml
+- include: cloud/tasks/nodejs.yml
 
 - name: add yarn repository key
   become: true

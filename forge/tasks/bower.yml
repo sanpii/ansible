@@ -1,0 +1,7 @@
+- include_tasks: cloud/tasks/yarn.yml
+
+- name: Install bower
+  become: true
+  command: 'yarn install --global bower'
+  args:
+    creates: /usr/bin/yarn
