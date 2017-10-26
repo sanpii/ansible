@@ -1,42 +1,69 @@
-- name: install transmission
+- set_fact:
+    transmission_pkg: transmission-daemon
+    transmission_service: transmission-daemon
+  when: ansible_distribution == "Debian"
+
+- set_fact:
+    transmission_pkg: transmission-cli
+    transmission_service: transmission
+  when: ansible_distribution == "Arch Linux"
+
+- name: install "{{ transmission_pkg }}"
   become: true
   package:
-    name: transmission-daemon
+    name: "{{ transmission_pkg }}"
     state: present
 
 - name: stop transmission
   become: true
   service:
-    name: transmission-daemon
+    name: "{{ transmission_service }}"
     state: stopped
+  when: ansible_distribution == "Debian"
 
 - name: copy configuration
   become: true
   template:
     src: seedbox/files/settings.json
     dest: /etc/transmission-daemon/
+  when: ansible_distribution == "Debian"
+
+- name: copy configuration
+  become_user: transmission
+  become: true
+  template:
+    src: seedbox/files/settings.json
+    dest: ~/.config/transmission-daemon/
+  when: ansible_distribution == "Arch Linux"
 
 - name: create torrents directory
+  become: true
   file:
-    path: ~/torrents/
+    path: "{{ item }}"
     state: directory
     group: debian-transmission
     mode: "g+w"
+  when: ansible_distribution == "Debian"
+  with_items:
+    - /home/sanpi/torrents/
+    - /home/sanpi/incomplete/
+    - /home/sanpi/torrents/.torrents/
 
-- name: create incomplete directory
+- name: create torrents directory
+  become: true
   file:
-    path: ~/incomplete/
+    path: "{{ item }}"
     state: directory
-    group: debian-transmission
+    group: transmission
     mode: "g+w"
-
-- name: create watch directory
-  file:
-    path: ~/torrents/.torrents/
-    state: directory
+  when: ansible_distribution == "Arch Linux"
+  with_items:
+    - /home/sanpi/torrents/
+    - /home/sanpi/incomplete/
+    - /home/sanpi/torrents/.torrents/
 
 - name: start transmission
   become: true
   service:
-    name: transmission-daemon
+    name: "{{ transmission_service }}"
     state: started

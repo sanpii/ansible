@@ -1,5 +1,15 @@
-- name: bind9 reload
+- set_fact:
+    bind_pkg: bind9
+    bind_service: bind9
+  when: ansible_distribution == "Debian"
+
+- set_fact:
+    bind_pkg: bind
+    bind_service: named
+  when: ansible_distribution == "Arch Linux"
+
+- name: bind reload
   become: true
   service:
-    name: bind9
+    name: "{{ bind_pkg }}"
     state: reloaded

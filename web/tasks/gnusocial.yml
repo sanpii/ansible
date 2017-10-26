@@ -10,3 +10,12 @@
     name: gnusocial
     state: started
     enable: yes
+
+- name: restart gnusocial service each night
+  become: true
+  cron:
+    hour: 3
+    minute: 0
+    job: "service gnusocial restart"
+    user: root
+    cron_file: gnusocial

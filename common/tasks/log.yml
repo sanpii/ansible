@@ -3,6 +3,14 @@
   package:
     name: mosquitto-clients
     state: present
+  when: ansible_distribution == "Debian"
+
+- name: install mosquitto
+  become: true
+  package:
+    name: mosquitto
+    state: present
+  when: ansible_distribution == "Arch Linux"
 
 - name: copy send_syslog script
   become: true

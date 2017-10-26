@@ -1,8 +1,23 @@
-- name: install nginx
+- set_fact:
+    nginx_pkg: nginx-extras
+  when: ansible_distribution == "Debian"
+
+- set_fact:
+    nginx_pkg: nginx
+  when: ansible_distribution == "Arch Linux"
+
+- name: install "{{ nginx_pkg }}"
   become: true
   package:
-    name: nginx-extras
+    name: "{{ nginx_pkg }}"
     state: present
+
+- name: start nginx service
+  become: true
+  service:
+    name: nginx
+    state: started
+    enabled: yes
 
 - name: remove default vhost
   become: true

@@ -18,7 +18,7 @@
   become: true
   copy:
     src: "{{ item }}"
-    dest: /etc/postgresql/9.6/main/
+    dest: "/etc/postgresql/{{ postgres_version }}/main/"
     owner: postgres
     group: postgres
   with_fileglob:
@@ -26,23 +26,9 @@
   notify: postgresql reload
 
 - file:
-    path: "/etc/postgresql/9.6/main/{{ item }}"
+    path: "/etc/postgresql/{{ postgres_version }}/main/{{ item }}"
     mode: 0640
   become: true
   with_items:
     - pg_hba.conf
     - pg_ident.conf
-
-- name: update powa-web configuration
-  become: true
-  lineinfile:
-    path: /etc/powa-web.conf
-    line: 'cookie_secret="{{ powa_cookie }}"'
-    regexp: '^cookie_secret='
-
-- name: update powa uwsgi configuration
-  become: true
-  lineinfile:
-    path: /etc/uwsgi/apps-enabled/powa.ini
-    line: 'socket=127.0.0.1:8888'
-    regexp: '^socket='

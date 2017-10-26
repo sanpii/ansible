@@ -1,9 +1,19 @@
-- name: install avahi-daemon
+- set_fact:
+    avahi_pkg: avahi-daemon
+  when: ansible_distribution == "Debian"
+
+- set_fact:
+    avahi_pkg: avahi
+  when: ansible_distribution == "Arch Linux"
+
+- name: install "{{ avahi_pkg }}"
+  become: true
   package:
-    name: avahi-daemon
+    name: "{{ avahi_pkg }}"
     state: present
 
 - name: start avahi-daemon service
+  become: true
   service:
     name: avahi-daemon
     state: started

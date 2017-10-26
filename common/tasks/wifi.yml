@@ -1,3 +1,7 @@
+- stat:
+    path: /etc/wpa_supplicant/wpa_supplicant.conf
+  register: wpa_supplicant
+
 - name: add wifi configuration
   become: true
   blockinfile:
@@ -8,3 +12,4 @@
           psk="{{ wifi_psk }}"
           priority=10
       }
+  when: wpa_supplicant.stat.exists == True

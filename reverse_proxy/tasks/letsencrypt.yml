@@ -24,7 +24,7 @@
   become: true
   cron:
     name: "letsencrypt"
-    job: "~/deploy/src/letsencrypt"
+    job: "/home/sanpi/deploy/src/ssl"
     state: "present"
     weekday: 7
     hour: 23

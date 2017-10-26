@@ -1,10 +1,29 @@
-- name: install bind9
+- set_fact:
+    bind_pkg: bind9
+    bind_service: bind9
+  when: ansible_distribution == "Debian"
+
+- set_fact:
+    bind_pkg: bind
+    bind_service: named
+  when: ansible_distribution == "Arch Linux"
+
+- name: install "{{ bind_pkg }}"
   become: true
   package:
-    name: bind9
+    name: "{{ bind_pkg }}"
     state: present
+  when: ansible_distribution == "Debian"
 
-- name: copy bind9 configuration
+- name: copy bind master configuration
+  become: true
+  copy:
+    src: dns/files/named.conf
+    dest: /etc/
+  notify: bind9 reload
+  when: ansible_distribution == "Arch Linux"
+
+- name: copy bind configuration
   become: true
   copy:
     src: "{{ item }}"
@@ -22,3 +41,9 @@
   with_fileglob:
     - dns/files/zones/*
   notify: bind9 reload
+
+- name: start "{{ bind_service }}" service
+  service:
+    name: "{{ bind_service }}"
+    state: started
+    enabled: yes
