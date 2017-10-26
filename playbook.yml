@@ -7,6 +7,7 @@
 
 - hosts: cuddles
   roles:
+    - crypt
     - common
     - mail
     - web
