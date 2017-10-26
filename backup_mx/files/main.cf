@@ -18,8 +18,8 @@ append_dot_mydomain = no
 readme_directory = no
 
 # TLS parameters
-smtpd_tls_cert_file=/etc/letsencrypt/live/mail2.homecomputing.fr/fullchain.pem
-smtpd_tls_key_file=/etc/letsencrypt/live/mail2.homecomputing.fr/privkey.pem
+smtpd_tls_cert_file=/etc/postfix/cert/fullchain.pem
+smtpd_tls_key_file=/etc/postfix/cert/privkey.pem
 smtpd_use_tls=yes
 smtpd_tls_session_cache_database = btree:${data_directory}/smtpd_scache
 smtp_tls_session_cache_database = btree:${data_directory}/smtp_scache
@@ -31,13 +31,14 @@ smtpd_relay_restrictions = permit_mynetworks permit_sasl_authenticated defer_una
 myhostname = kimsufi.homecomputing.fr
 alias_maps = hash:/etc/aliases
 alias_database = hash:/etc/aliases
-mydestination = kimsufi, localhost.localdomain, , localhost
-relayhost =
+mydestination = localhost.$mydomain, localhost, $myhostname
+relayhost = homecomputing.fr
 mynetworks = 127.0.0.0/8 [::ffff:127.0.0.0]/104 [::1]/128 80.67.177.91/32
 mailbox_size_limit = 0
 recipient_delimiter = +
 inet_interfaces = all
 
 smtpd_recipient_restrictions = permit_sasl_authenticated permit_mynetworks reject_unauth_destination
-relay_domains = $mydestination homecomputing.fr hcpt.fr joseph.pro quanthome.fr estcequilyafirstjeudicettesemaine.fr
+relay_domains = homecomputing.fr hcpt.fr joseph.pro quanthome.fr estcequilyafirstjeudicettesemaine.fr
 relay_recipient_maps =
+compatibility_level = 2
