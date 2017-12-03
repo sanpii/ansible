@@ -15,7 +15,7 @@ server {
 server {
     listen 443 ssl http2;
     server_name sav.homecomputing.fr;
-    root /home/git/public_repositories/sav/current/web;
+    root /home/git/public_repositories/sav/current/public;
     index index.php;
     client_max_body_size 10G;
 
@@ -44,6 +44,8 @@ server {
     }
 
     location ~ \.php(/|$) {
+        include /home/git/public_repositories/sav/current/env;
+
         include /etc/nginx/fastcgi_params;
         fastcgi_pass unix:/run/php/php-fpm/git;
     }
