@@ -18,10 +18,3 @@
     - sender_canonical
     - smtp_reply_filter
   notify: postfix reload
-
-- name: copy aliases configuration
-  become: true
-  copy:
-    src: aliases
-    dest: /etc/
-  notify: newaliases
