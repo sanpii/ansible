@@ -15,7 +15,7 @@
 - name: add rspamd apt repository
   become: true
   apt_repository:
-    repo: 'deb https://rspamd.com/apt-stable/ stretch main'
+    repo: 'deb https://rspamd.com/apt-stable/ {{ debian_version }} main'
     state: present
     filename: rspamd
 
