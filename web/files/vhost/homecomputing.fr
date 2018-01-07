@@ -20,7 +20,7 @@ server {
     ssl_certificate /etc/letsencrypt/live/homecomputing.fr/fullchain.pem;
     ssl_certificate_key /etc/letsencrypt/live/homecomputing.fr/privkey.pem;
 
-    location ^~ /.well-known/openpgpkey/hu {
+    location /.well-known/openpgpkey/hu {
         alias /etc/app/id/src/config/files/wkd;
     }
 

@@ -22,7 +22,6 @@ server {
     ssl_certificate /etc/letsencrypt/live/courses.homecomputing.fr/fullchain.pem;
     ssl_certificate_key /etc/letsencrypt/live/courses.homecomputing.fr/privkey.pem;
 
-
     location / {
         try_files $uri $uri/ @rewrite;
     }
