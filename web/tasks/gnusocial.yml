@@ -1,7 +1,7 @@
 - name: install gnusocial service
   become: true
-  copy:
-    src: gnusocial.service
+  template:
+    src: files/gnusocial.service.j2
     dest: /etc/systemd/system/gnusocial
 
 - name: enable gnusocial service
@@ -9,7 +9,7 @@
   service:
     name: gnusocial
     state: started
-    enable: yes
+    enabled: yes
 
 - name: restart gnusocial service each night
   become: true
