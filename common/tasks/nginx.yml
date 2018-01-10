@@ -44,5 +44,6 @@
     src: "{{ item }}"
     dest: /etc/nginx/sites-enabled/
   with_fileglob:
+    - common/files/vhost/*
     - vhost/*
   notify: nginx reload
