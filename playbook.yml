@@ -24,6 +24,7 @@
     - cloud
     - nfs
     - forge
+    - cfp
 
 - hosts: edf
   roles:

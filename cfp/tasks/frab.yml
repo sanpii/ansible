@@ -1,0 +1,22 @@
+- name: clone frab sources
+  git:
+    repository: https://github.com/frab/frab.git
+    dest: ~/public_html/frab
+
+- name: install dependencies
+  command:
+    name: bundle install --without="sqlite3 mysql" --path vendor/bundle
+    args:
+      directories: ~/public_html/frab
+
+- name: precompile assets
+  command:
+    name: RACK_ENV=production bundle exec rake assets:precompile
+    args:
+      directories: ~/public_html/frab
+
+- name: seed db
+  command:
+    name: RACK_ENV=production bundle exec rake db:setup
+    args:
+      directories: ~/public_html/frab

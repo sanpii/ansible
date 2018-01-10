@@ -1,0 +1,42 @@
+server {
+    listen 80;
+    server_name cfp.homecomputing.fr;
+
+    location ^~ /.well-known/acme-challenge {
+        add_header Content-Type application/jose+json;
+        root /tmp/letsencrypt/public_html/;
+    }
+
+    location / {
+        return 301 https://$server_name$request_uri;
+    }
+}
+
+server {
+    listen 443 ssl http2;
+    server_name cfp.homecomputing.fr;
+    root /home/sanpi/public_html/frab/public;
+
+    ssl on;
+    ssl_certificate /etc/letsencrypt/live/cfp.homecomputing.fr/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/cfp.homecomputing.fr/privkey.pem;
+
+    location / {
+        try_files /system/maintenance.html $uri $uri/index.html $uri.html @ruby;
+    }
+
+    location ^~ /exports {
+        alias /home/sanpi/public_html/frab/public/system/conference_exports/;
+    }
+
+    location @ruby {
+        proxy_set_header X-Real-IP  $remote_addr;
+        proxy_set_header Host $host;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_set_header X-Forwarded-Ssl on;
+        proxy_set_header X-Forwarded-Port $server_port;
+        proxy_set_header X-Forwarded-Host $host;
+        proxy_pass  http://127.0.0.1:3003;
+    }
+}
