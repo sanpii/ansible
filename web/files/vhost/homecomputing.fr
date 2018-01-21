@@ -1,6 +1,7 @@
 server {
     listen 80;
     server_name homecomputing.fr;
+    server_name www.homecomputing.fr;
 
     location ^~ /.well-known/acme-challenge {
         add_header Content-Type application/jose+json;
