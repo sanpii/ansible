@@ -16,11 +16,6 @@ zone "hcpt.fr" {
     file "hcpt.fr.zone";
 };
 
-zone "quanthome.fr" {
-    type master;
-    file "quanthome.fr.zone";
-};
-
 zone "estcequilyafirstjeudicettesemaine.fr" {
     type master;
     file "estcequilyafirstjeudicettesemaine.fr.zone";

@@ -18,12 +18,6 @@ zone "hcpt.fr" {
     file "hcpt.fr.zone";
 };
 
-zone "quanthome.fr" {
-    type slave;
-    masters { 80.67.177.91; };
-    file "quanthome.fr.zone";
-};
-
 zone "estcequilyafirstjeudicettesemaine.fr" {
     type slave;
     masters { 80.67.177.91; };

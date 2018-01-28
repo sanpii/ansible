@@ -50,7 +50,7 @@ mailbox_size_limit = 0
 recipient_delimiter = +
 inet_interfaces = all
 
-relay_domains = homecomputing.fr hcpt.fr joseph.pro quanthome.fr estcequilyafirstjeudicettesemaine.fr
+relay_domains = homecomputing.fr hcpt.fr joseph.pro estcequilyafirstjeudicettesemaine.fr
 relay_recipient_maps =
 compatibility_level = 2
 
