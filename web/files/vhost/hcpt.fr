@@ -1,6 +1,7 @@
 server {
     listen 80;
     server_name hcpt.fr;
+    server_name www.hcpt.fr;
 
     location ^~ /.well-known/acme-challenge {
         add_header Content-Type application/jose+json;
