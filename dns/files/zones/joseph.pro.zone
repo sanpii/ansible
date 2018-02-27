@@ -1,5 +1,5 @@
-$TTL 86400
-@   IN  SOA ns postmaster (2013062626 42000 3600 1209600 3600)
+$TTL 1h
+@   IN  SOA ns postmaster (2013062627 42000 3600 1209600 3600)
 @               NS     ns.joseph.pro.
 @               NS     ns2.joseph.pro.
 @               MX 1   mail

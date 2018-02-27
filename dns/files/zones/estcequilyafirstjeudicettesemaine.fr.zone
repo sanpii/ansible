@@ -1,5 +1,5 @@
-$TTL 86400
-@    IN  SOA ns postmaster (10 42000 3600 1209600 3600)
+$TTL 1h
+@    IN  SOA ns postmaster (11 42000 3600 1209600 3600)
 @               NS     ns.estcequilyafirstjeudicettesemaine.fr.
 @               NS     ns2.estcequilyafirstjeudicettesemaine.fr.
 @               MX 1   mail

@@ -1,5 +1,5 @@
-$TTL 86400
-@    IN  SOA ns postmaster (2013062622 42000 3600 1209600 3600)
+$TTL 1h
+@    IN  SOA ns postmaster (2013062623 42000 3600 1209600 3600)
 @               NS     ns.hcpt.fr.
 @               NS     ns2.hcpt.fr.
 @               MX 1   mail
