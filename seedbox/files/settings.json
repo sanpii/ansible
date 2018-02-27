@@ -52,6 +52,8 @@
     "rpc-username": "sanpi",
     "rpc-whitelist": "127.0.0.1,80.67.177.91",
     "rpc-whitelist-enabled": true,
+    "rpc-host-whitelist": "torrent.homecomputing.fr",
+    "rpc-host-whitelist-enabled": true,
     "scrape-paused-torrents-enabled": true,
     "script-torrent-done-enabled": false,
     "script-torrent-done-filename": "",
