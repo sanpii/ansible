@@ -14,6 +14,7 @@
     dest: /etc/postfix/
   with_items:
     - main.cf
+    - master.cf
     - header_checks
     - sender_canonical
     - smtp_reply_filter
