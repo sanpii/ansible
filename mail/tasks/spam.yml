@@ -1,12 +1,3 @@
-- name: install dkim
-  become: true
-  package:
-    name: "{{ item }}"
-    state: present
-  with_items:
-    - opendkim
-    - opendkim-tools
-
 - name: add rspamd repository key
   become: true
   apt_key:

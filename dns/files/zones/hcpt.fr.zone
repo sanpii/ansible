@@ -1,5 +1,5 @@
 $TTL 1h
-@    IN  SOA ns postmaster (2013062623 42000 3600 1209600 3600)
+@    IN  SOA ns postmaster (2018083001 42000 3600 1209600 3600)
 @               NS     ns.hcpt.fr.
 @               NS     ns2.hcpt.fr.
 @               MX 1   mail
@@ -18,5 +18,6 @@ www             CNAME  hcpt.fr.
 t            IN NS     tn
 tn              A      91.121.180.148
 
-_domainkey      TXT    "t=y; o=~;"
-dkim._domainkey TXT    "k=rsa; p=MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCgW+Pgfb9ORu44lehONrmfyqYJJ74Y0ROwxApFHaY2PgmPgycQAlitR4LCUUaNkrSasKpd00QL3tWBOxpJAMXF8bo7aHG2PrkaGN9gdaivcgOO1vF9ajkrCKrPLu8CthCdqCOLNS4aKSm3CoI8EJ2IlDeKdFbHPPB9YFO2DDgQGQIDAQAB;"
+mail._domainkey IN      TXT     ( "v=DKIM1; h=sha256; k=rsa; "
+          "p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAwTyuqmRLU7GpX8lBMknR5yA69aJk964hNmDyg5jVezbSR/KWrYZB2POwUHOW3c2YfyGwupdntf1hxYC3h7aUXxpAeWQ78AWxVqT/tIhugvBCy+iOEdmJgjYk/rWuzzQaqdVZiSyDBgWqYGgkzARkSslINgHxeADpM4qcwI+RSY4UpOigoQhpxBgNEilwvQ/u6wCLEFB6Dr4FGg"
+          "7HnKYaUpiJB1Vf8Z2+O+Sz+d8ASzvv9AEIHkGOst8okdIbfRiGhbOWseuVNr2tC46/ZKRSyXvq5P6IbxytCxcBDbo2g7Hubh9zKO9vTxo/qnTBh/3T6Rasgei2AVBa6MxfsE+L8wIDAQAB" )  ; ----- DKIM key mail for hcpt.fr

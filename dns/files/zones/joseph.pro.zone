@@ -1,5 +1,5 @@
 $TTL 1h
-@   IN  SOA ns postmaster (2013062627 42000 3600 1209600 3600)
+@   IN  SOA ns postmaster (2018083001 42000 3600 1209600 3600)
 @               NS     ns.joseph.pro.
 @               NS     ns2.joseph.pro.
 @               MX 1   mail
@@ -15,5 +15,6 @@ mail2           A      91.121.180.148
 
 www             CNAME  joseph.pro.
 
-_domainkey      TXT    "t=y; o=~;"
-dkim._domainkey TXT    "k=rsa; p=MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCgW+Pgfb9ORu44lehONrmfyqYJJ74Y0ROwxApFHaY2PgmPgycQAlitR4LCUUaNkrSasKpd00QL3tWBOxpJAMXF8bo7aHG2PrkaGN9gdaivcgOO1vF9ajkrCKrPLu8CthCdqCOLNS4aKSm3CoI8EJ2IlDeKdFbHPPB9YFO2DDgQGQIDAQAB;"
+mail._domainkey IN      TXT     ( "v=DKIM1; h=sha256; k=rsa; "
+          "p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAyBWB6vj4o55EDTk0wyu/yiGf3fdwHc7JDpwQMfVI3zdDpUq6+WLZKiJWKtfJ+EslsEsdmGnz2IDQVivu88ftir/iLK/b2Bo7OCZTUmJfiUmeqO4ZedLCCAWgVXdb4MhkIdAV83+kWwl/MhEV7fmSr3LssAWpuEa6dmjrMJdMQA4yx2yog6MywH8GxUIXSguZKbvwNQvXlb6vl7"
+          "vnYvqYPrS+GhEdfeSr8GQeYUrk59ftNDXAIDzchh/bQ2Ug2ehE26yYg0CQmlc2AvoMvACXMUmTscpRkZuJapjILs0qHXJhL1D7EI1FpcPMpfKGd7Jdp7jc7QabNnU1oeWzmp91UQIDAQAB" )  ; ----- DKIM key mail for joseph.pro

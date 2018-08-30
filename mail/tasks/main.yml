@@ -1,3 +1,4 @@
 - import_tasks: postfix.yml
 - import_tasks: dovecot.yml
 - import_tasks: spam.yml
+- import_tasks: dkim.yml

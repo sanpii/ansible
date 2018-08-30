@@ -1,5 +1,5 @@
 $TTL 1h
-@   IN  SOA ns postmaster (2013062625 42000 3600 1209600 3600)
+@   IN  SOA ns postmaster (2018300801 42000 3600 1209600 3600)
 @               NS     ns.homecomputing.fr.
 @               NS     ns2.homecomputing.fr.
 @               MX 1   mail
@@ -20,5 +20,6 @@ kimsufi         AAAA   2001:41d0:1:f594::1
 
 www             CNAME  homecomputing.fr.
 
-_domainkey      TXT    "t=y; o=~;"
-dkim._domainkey TXT    "k=rsa; p=MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCgW+Pgfb9ORu44lehONrmfyqYJJ74Y0ROwxApFHaY2PgmPgycQAlitR4LCUUaNkrSasKpd00QL3tWBOxpJAMXF8bo7aHG2PrkaGN9gdaivcgOO1vF9ajkrCKrPLu8CthCdqCOLNS4aKSm3CoI8EJ2IlDeKdFbHPPB9YFO2DDgQGQIDAQAB;"
+mail._domainkey IN      TXT     ( "v=DKIM1; h=sha256; k=rsa; "
+          "p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAu7n1Tm3/nGKj3ModAGJqMlaKaHfqF2DWGmUjdENqpki5aJx04IzrDxUSnvQkBG2hlSAVNsHp/8VbCQxnVmO4p/BrQ3koUitCFSh9EPAYVDHQG+xp7aYssecYc1Yop9vObG5qG686cJvExjJivpbqeFm/HXojrAt18dYLgbI52elo/bUwPpNJHZfE/P2izVF4gqmz9feU902u1m"
+          "zsY54Lo2WO5rI/aCnKp3FHTLpYML8gbCXb3l30kU0FQ6CVkBkCDyUIMBxPIKK39Gx+tY6QgfEJ+JFXEeSP5ndmppgJVyoCFfEOu0GW+qZTALrHhrakhxax+EEYpZTu15hszi8BPwIDAQAB" )  ; ----- DKIM key mail for homecomputing.fr

@@ -1,0 +1,17 @@
+- name: install dkim
+  become: true
+  package:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - opendkim
+    - opendkim-tools
+
+- name: copy dkim configuration
+  become: true
+  copy:
+    src: "{{ item }}"
+    dest: /etc/
+  with_items:
+    - opendkim.conf
+    - opendkim
