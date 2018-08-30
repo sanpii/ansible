@@ -2,3 +2,4 @@
 - import_tasks: dovecot.yml
 - import_tasks: spam.yml
 - import_tasks: dkim.yml
+- import_tasks: dmarc.yml

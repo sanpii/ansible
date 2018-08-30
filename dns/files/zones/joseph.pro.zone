@@ -1,5 +1,5 @@
 $TTL 1h
-@   IN  SOA ns postmaster (2018083001 42000 3600 1209600 3600)
+@   IN  SOA ns postmaster (2018083002 42000 3600 1209600 3600)
 @               NS     ns.joseph.pro.
 @               NS     ns2.joseph.pro.
 @               MX 1   mail
@@ -18,3 +18,4 @@ www             CNAME  joseph.pro.
 mail._domainkey IN      TXT     ( "v=DKIM1; h=sha256; k=rsa; "
           "p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAyBWB6vj4o55EDTk0wyu/yiGf3fdwHc7JDpwQMfVI3zdDpUq6+WLZKiJWKtfJ+EslsEsdmGnz2IDQVivu88ftir/iLK/b2Bo7OCZTUmJfiUmeqO4ZedLCCAWgVXdb4MhkIdAV83+kWwl/MhEV7fmSr3LssAWpuEa6dmjrMJdMQA4yx2yog6MywH8GxUIXSguZKbvwNQvXlb6vl7"
           "vnYvqYPrS+GhEdfeSr8GQeYUrk59ftNDXAIDzchh/bQ2Ug2ehE26yYg0CQmlc2AvoMvACXMUmTscpRkZuJapjILs0qHXJhL1D7EI1FpcPMpfKGd7Jdp7jc7QabNnU1oeWzmp91UQIDAQAB" )  ; ----- DKIM key mail for joseph.pro
+_dmarc TXT "v=DMARC1; p=quarantine; pct=20; adkim=s; aspf=r; fo=1; rua=mailto:postmaster@joseph.pro; ruf=mailto:forensic@joseph.pro;"

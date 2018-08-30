@@ -1,0 +1,12 @@
+- name: install opendmarc
+  become: true
+  package:
+    name: opendmarc
+    state: present
+
+- name: configure opendmarc socket
+  become: true
+  fileinfile:
+    path: /etc/opendmarc.conf
+    line: 'Socket inet:12302@localhost'
+    regex: '^Socket='
