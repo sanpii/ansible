@@ -3,6 +3,13 @@ server {
     server_name homecomputing.fr;
     server_name www.homecomputing.fr;
 
+    location /nginx_status {
+        stub_status on;
+        access_log   off;
+        allow 127.0.0.1;
+        deny all;
+    }
+
     location ^~ /.well-known/acme-challenge {
         add_header Content-Type application/jose+json;
         root /tmp/letsencrypt/public_html/;
@@ -26,7 +33,7 @@ server {
     }
 
     location / {
-        return 404;
+        return 204;
     }
 }
 

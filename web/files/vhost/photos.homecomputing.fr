@@ -1,6 +1,6 @@
 server {
     listen 80;
-    server_name code.homecomputing.fr;
+    server_name photos.homecomputing.fr;
 
     location ^~ /.well-known/acme-challenge {
         add_header Content-Type application/jose+json;
@@ -14,13 +14,13 @@ server {
 
 server {
     listen 443 ssl http2;
-    server_name code.homecomputing.fr;
-    root /home/git/public_repositories/code-paste/current/web/;
+    server_name photos.homecomputing.fr;
+    root /home/sanpi/public_html/pixelfed/public;
     index index.php;
 
     ssl on;
-    ssl_certificate /etc/letsencrypt/live/code.homecomputing.fr/fullchain.pem;
-    ssl_certificate_key /etc/letsencrypt/live/code.homecomputing.fr/privkey.pem;
+    ssl_certificate /etc/letsencrypt/live/photos.homecomputing.fr/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/photos.homecomputing.fr/privkey.pem;
 
     location / {
         try_files $uri $uri/ @rewrite;
@@ -32,6 +32,6 @@ server {
 
     location ~ \.php(/|$) {
         include /etc/nginx/fastcgi_params;
-        fastcgi_pass unix:/run/php/git;
+        fastcgi_pass unix:/run/php/sanpi;
     }
 }

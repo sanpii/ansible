@@ -30,7 +30,7 @@ server {
     location / {
         satisfy any;
         allow 192.168.1.0/24;
-        allow 80.67.177.91/32;
+        allow 77.201.199.161/32;
         deny all;
         auth_basic "closed site";
         auth_basic_user_file htpasswd;
@@ -46,6 +46,6 @@ server {
         include /home/git/public_repositories/wiki-md/current/env;
 
         include /etc/nginx/fastcgi_params;
-        fastcgi_pass unix:/run/php/php-fpm/git;
+        fastcgi_pass unix:/run/php/git;
     }
 }

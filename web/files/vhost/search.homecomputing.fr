@@ -9,13 +9,24 @@ server {
     ssl_certificate /etc/letsencrypt/live/search.homecomputing.fr/fullchain.pem;
     ssl_certificate_key /etc/letsencrypt/live/search.homecomputing.fr/privkey.pem;
 
+    if ($http_user_agent ~* Googlebot|bingbot|Baiduspider|yacybot|YandexMobileBot|YandexBot|Yahoo|MJ12bot|AhrefsBot|archive.org_bot|msnbot|MJ12bot|SeznamBot|linkdexbot|Netvibes|SMTBot|zgrab) {
+        return 503;
+    }
+
     location /.well-known {
         add_header Content-Type application/jose+json;
         root /tmp/letsencrypt/public_html/;
     }
 
     location / {
-            include uwsgi_params;
-            uwsgi_pass unix:/run/uwsgi/app/searx/socket;
+        satisfy any;
+        allow 192.168.1.0/24;
+        allow 77.201.199.161/32;
+        deny all;
+        auth_basic "closed site";
+        auth_basic_user_file htpasswd;
+
+        include uwsgi_params;
+        uwsgi_pass unix:/run/uwsgi/app/searx/socket;
     }
 }

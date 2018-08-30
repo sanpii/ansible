@@ -25,7 +25,7 @@ server {
     }
 
     location / {
-        return 404;
+        return 204;
     }
 }
 

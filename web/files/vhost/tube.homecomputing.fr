@@ -1,0 +1,88 @@
+server {
+    listen 80;
+    server_name tube.homecomputing.fr;
+
+    location ^~ /.well-known/acme-challenge {
+        add_header Content-Type application/jose+json;
+        root /tmp/letsencrypt/public_html/;
+    }
+
+    location / {
+        return 301 https://$server_name$request_uri;
+    }
+}
+
+server {
+    listen 443 ssl http2;
+    server_name tube.homecomputing.fr;
+
+    ssl_certificate /etc/letsencrypt/live/tube.homecomputing.fr/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/tube.homecomputing.fr/privkey.pem;
+
+    location ~ ^/client/(.*\.(js|css|woff2|otf|ttf|woff|eot))$ {
+        add_header Cache-Control "public, max-age=31536000, immutable";
+
+        alias /home/sanpi/public_html/peertube/current/client/dist/$1;
+    }
+
+    location ~ ^/static/(thumbnails|avatars)/(.*)$ {
+        add_header Cache-Control "public, max-age=31536000, immutable";
+
+        alias /home/sanpi/public_html/peertube/storage/$1/$2;
+    }
+
+    location / {
+        proxy_pass http://localhost:9000;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header Host $host;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+
+        # For the video upload
+        client_max_body_size 2G;
+        proxy_connect_timeout 600;
+        proxy_send_timeout 600;
+        proxy_read_timeout 600;
+
+	add_header X-Frame-Options "";
+    }
+
+    # Bypass PeerTube webseed route for better performances
+    location /static/webseed {
+        # Clients usually have 4 simultaneous webseed connections, so the real limit is 3MB/s per client
+        limit_rate 800k;
+
+        if ($request_method = 'OPTIONS') {
+            add_header 'Access-Control-Allow-Origin' '*';
+            add_header 'Access-Control-Allow-Methods' 'GET, OPTIONS';
+            add_header 'Access-Control-Allow-Headers' 'Range,DNT,X-CustomHeader,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type';
+            add_header 'Access-Control-Max-Age' 1728000;
+            add_header 'Content-Type' 'text/plain charset=UTF-8';
+            add_header 'Content-Length' 0;
+            return 204;
+        }
+
+        if ($request_method = 'GET') {
+            add_header 'Access-Control-Allow-Origin' '*';
+            add_header 'Access-Control-Allow-Methods' 'GET, OPTIONS';
+            add_header 'Access-Control-Allow-Headers' 'Range,DNT,X-CustomHeader,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type';
+
+            # Don't spam access log file with byte range requests
+            access_log off;
+        }
+
+        alias /home/sanpi/public_html/peertube/storage/videos;
+    }
+
+    # Websocket tracker
+    location /tracker/socket {
+        # Peers send a message to the tracker every 15 minutes
+        # Don't close the websocket before this time
+        proxy_read_timeout 1200s;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection "upgrade";
+        proxy_http_version 1.1;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header Host $host;
+        proxy_pass http://localhost:9000;
+    }
+}
