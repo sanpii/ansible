@@ -1,2 +1,2 @@
-- include: yarn.yml
-- include: nextcloud.yml
+- import_tasks: yarn.yml
+- import_tasks: nextcloud.yml

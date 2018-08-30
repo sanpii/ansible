@@ -1,4 +1,4 @@
-- include: borg.yml
+- import_tasks: borg.yml
 
 - name: install rsync
   become: true

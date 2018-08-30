@@ -1,5 +1,5 @@
-- include: common/tasks/dotdeb.yml
+- import_tasks: common/tasks/dotdeb.yml
   when: ansible_distribution == "Debian"
-- include: letsencrypt.yml
-- include: nginx.yml
-- include: vhost.yml
+- import_tasks: letsencrypt.yml
+- import_tasks: nginx.yml
+- import_tasks: vhost.yml

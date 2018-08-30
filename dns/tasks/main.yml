@@ -1,1 +1,1 @@
-- include: bind.yml
+- import_tasks: bind.yml

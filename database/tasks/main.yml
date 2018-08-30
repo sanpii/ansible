@@ -1,2 +1,2 @@
-- include: mysql.yml
-- include: postgresql.yml
+- import_tasks: mysql.yml
+- import_tasks: postgresql.yml

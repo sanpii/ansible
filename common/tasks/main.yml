@@ -1,17 +1,17 @@
-- include: ca.yml
-- include: cron.yml
-- include: avahi.yml
-- include: ferm.yml
-- include: smartctl.yml
-- include: fail2ban.yml
-- include: log.yml
-- include: mail.yml
-- include: pam.yml
-- include: cron-apt.yml
+- import_tasks: ca.yml
+- import_tasks: cron.yml
+- import_tasks: avahi.yml
+- import_tasks: ferm.yml
+- import_tasks: smartctl.yml
+- import_tasks: fail2ban.yml
+- import_tasks: log.yml
+- import_tasks: mail.yml
+- import_tasks: pam.yml
+- import_tasks: cron-apt.yml
   when: ansible_os_family == "Debian"
-- include: video-off.yml
+- import_tasks: video-off.yml
   tags:
     - headless
-- include: wifi.yml
+- import_tasks: wifi.yml
   tags:
     - wifi

@@ -1,1 +1,1 @@
-- include: prosody.yml
+- import_tasks: prosody.yml

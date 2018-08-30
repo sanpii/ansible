@@ -1,2 +1,2 @@
-- include: ruby.yml
-- include: frab.yml
+- import_tasks: ruby.yml
+- import_tasks: frab.yml

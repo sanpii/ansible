@@ -1,1 +1,1 @@
-- include: dns/tasks/bind.yml
+- import_tasks: dns/tasks/bind.yml

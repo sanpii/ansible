@@ -1,1 +1,1 @@
-- include: web/handlers/main.yml
+- import_tasks: web/handlers/main.yml

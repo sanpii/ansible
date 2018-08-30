@@ -6,7 +6,7 @@
     http_user: http
   when: ansible_distribution == "Arch Linux"
 
-- include: common/tasks/nginx.yml
+- import_tasks: common/tasks/nginx.yml
 
 - name: create proxy cache directory
   become: true

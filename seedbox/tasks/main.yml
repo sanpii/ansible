@@ -1,1 +1,1 @@
-- include: transmission.yml
+- import_tasks: transmission.yml

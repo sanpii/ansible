@@ -1,1 +1,1 @@
-- include: mail/handlers/main.yml
+- import_tasks: mail/handlers/main.yml

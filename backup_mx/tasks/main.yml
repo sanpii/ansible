@@ -1,1 +1,1 @@
-- include: postfix.yml
+- import_tasks: postfix.yml

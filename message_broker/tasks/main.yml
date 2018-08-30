@@ -1,4 +1,4 @@
-- include: mosquitto.yml
+- import_tasks: mosquitto.yml
 
 - name: modify script path
   become: true
