@@ -1,20 +1,19 @@
 $TTL 1h
-@    IN  SOA ns postmaster (3 42000 3600 1209600 3600)
+@    IN  SOA ns postmaster (2018111202 42000 3600 1209600 3600)
 @               NS     ns.hcpt.fr.
-@               NS     ns2.hcpt.fr.
+@               NS     ns2.afraid.org.
 @               MX 1   mail
        600  IN  TXT    "v=spf1 a mx ~all"
 
                 A      89.234.176.112
 *               A      89.234.176.112
 ns              A      89.234.176.112
-ns2             A      91.121.180.148
 mail            A      89.234.176.112
 
 www             CNAME  hcpt.fr.
 
 t            IN NS     tn
-tn              A      91.121.180.148
+tn              A      89.234.176.112
 _dmarc       IN TXT "v=DMARC1; p=quarantine; pct=20; adkim=s; aspf=r; fo=1; rua=mailto:postmaster@hcpt.fr; ruf=mailto:forensic@hcpt.fr;"
 mail._domainkey	IN	TXT	( "v=DKIM1; h=sha256; k=rsa; "
 	  "p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAwTyuqmRLU7GpX8lBMknR5yA69aJk964hNmDyg5jVezbSR/KWrYZB2POwUHOW3c2YfyGwupdntf1hxYC3h7aUXxpAeWQ78AWxVqT/tIhugvBCy+iOEdmJgjYk/rWuzzQaqdVZiSyDBgWqYGgkzARkSslINgHxeADpM4qcwI+RSY4UpOigoQhpxBgNEilwvQ/u6wCLEFB6Dr4FGg"

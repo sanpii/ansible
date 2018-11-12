@@ -1,7 +1,7 @@
 $TTL 1h
-@   IN  SOA ns postmaster (2018083011 42000 3600 1209600 3600)
+@   IN  SOA ns postmaster (2018111202 42000 3600 1209600 3600)
 @               NS     ns.homecomputing.fr.
-@               NS     ns2.homecomputing.fr.
+@               NS     ns2.afraid.org.
 @               MX 1   mail
        600  IN  TXT    "v=spf1 a mx ~all"
 
@@ -9,7 +9,6 @@ $TTL 1h
 *               A      89.234.176.112
 torrent         A      91.121.180.148
 ns              A      89.234.176.112
-ns2             A      91.121.180.148
 mail            A      89.234.176.112
 kimsufi         A      91.121.180.148
 kimsufi         AAAA   2001:41d0:1:f594::1

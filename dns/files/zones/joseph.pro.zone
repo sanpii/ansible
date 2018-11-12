@@ -1,14 +1,13 @@
 $TTL 1h
-@   IN  SOA ns postmaster (3 42000 3600 1209600 3600)
+@   IN  SOA ns postmaster (2018111202 42000 3600 1209600 3600)
 @               NS     ns.joseph.pro.
-@               NS     ns2.joseph.pro.
+@               NS     ns2.afraid.org.
 @               MX 1   mail
        600  IN  TXT    "v=spf1 a mx ~all"
 
                 A      89.234.176.112
 *               A      89.234.176.112
 ns              A      89.234.176.112
-ns2             A      91.121.180.148
 mail            A      89.234.176.112
 
 www             CNAME  joseph.pro.

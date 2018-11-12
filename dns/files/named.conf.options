@@ -23,8 +23,8 @@ options {
 
     notify yes;
     allow-query { any; };
-    allow-transfer { 91.121.180.148; };
-    also-notify { 91.121.180.148; };
+    allow-transfer { 174.37.196.55; };
+    also-notify { 174.37.196.55; };
     allow-recursion {127.0.0.1; 192.168.0.0/16;};
 
     minimal-responses yes;
