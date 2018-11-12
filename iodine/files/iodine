@@ -1,5 +1,0 @@
-# Default settings for iodine. This file is sourced from
-# /etc/init.d/iodined
-START_IODINED="true"
-IODINED_ARGS="-p 5353 10.0.0.1 t.hcpt.fr"
-IODINED_PASSWORD="{{ iodine_password }}"
