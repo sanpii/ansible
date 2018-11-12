@@ -20,7 +20,7 @@
   copy:
     src: dns/files/named.conf
     dest: /etc/
-  notify: bind9 reload
+  notify: bind reload
   when: ansible_distribution == "Arch Linux"
 
 - name: copy bind configuration
@@ -31,7 +31,7 @@
   with_items:
     - named.conf.local
     - named.conf.options
-  notify: bind9 reload
+  notify: bind reload
 
 - name: copy zones configuration
   become: true
@@ -40,7 +40,7 @@
     dest: /var/cache/bind/
   with_fileglob:
     - dns/files/zones/*
-  notify: bind9 reload
+  notify: bind reload
 
 - name: start "{{ bind_service }}" service
   service:

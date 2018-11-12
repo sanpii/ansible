@@ -1,26 +1,25 @@
 $TTL 1h
-@   IN  SOA ns postmaster (2018300802 42000 3600 1209600 3600)
+@   IN  SOA ns postmaster (2018083008 42000 3600 1209600 3600)
 @               NS     ns.homecomputing.fr.
 @               NS     ns2.homecomputing.fr.
 @               MX 1   mail
 @               MX 2   mail2
        600  IN  TXT    "v=spf1 a mx ~all"
 
-                A      80.67.177.91
-*               A      80.67.177.91
-sanpi           A      91.121.180.148
+                A      89.234.176.112
+*               A      89.234.176.112
 torrent         A      91.121.180.148
-horaires        A      91.121.180.148
-ns              A      80.67.177.91
+ns              A      89.234.176.112
 ns2             A      91.121.180.148
-mail            A      80.67.177.91
+mail            A      89.234.176.112
 mail2           A      91.121.180.148
 kimsufi         A      91.121.180.148
 kimsufi         AAAA   2001:41d0:1:f594::1
 
 www             CNAME  homecomputing.fr.
-
-mail._domainkey IN      TXT     ( "v=DKIM1; h=sha256; k=rsa; "
-          "p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAu7n1Tm3/nGKj3ModAGJqMlaKaHfqF2DWGmUjdENqpki5aJx04IzrDxUSnvQkBG2hlSAVNsHp/8VbCQxnVmO4p/BrQ3koUitCFSh9EPAYVDHQG+xp7aYssecYc1Yop9vObG5qG686cJvExjJivpbqeFm/HXojrAt18dYLgbI52elo/bUwPpNJHZfE/P2izVF4gqmz9feU902u1m"
-          "zsY54Lo2WO5rI/aCnKp3FHTLpYML8gbCXb3l30kU0FQ6CVkBkCDyUIMBxPIKK39Gx+tY6QgfEJ+JFXEeSP5ndmppgJVyoCFfEOu0GW+qZTALrHhrakhxax+EEYpZTu15hszi8BPwIDAQAB" )  ; ----- DKIM key mail for homecomputing.fr
-_dmarc TXT "v=DMARC1; p=quarantine; pct=20; adkim=s; aspf=r; fo=1; rua=mailto:postmaster@homecomputing.fr; ruf=mailto:forensic@homecomputing.fr;"
+_dmarc       IN TXT "v=DMARC1; p=quarantine; pct=20; adkim=s; aspf=r; fo=1; rua=mailto:dmarc@homecomputing.fr; ruf=mailto:forensic@homecomputing.fr;"
+mail._domainkey	IN	TXT	( "v=DKIM1; h=sha256; k=rsa; "
+	  "p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAu7n1Tm3/nGKj3ModAGJqMlaKaHfqF2DWGmUjdENqpki5aJx04IzrDxUSnvQkBG2hlSAVNsHp/8VbCQxnVmO4p/BrQ3koUitCFSh9EPAYVDHQG+xp7aYssecYc1Yop9vObG5qG686cJvExjJivpbqeFm/HXojrAt18dYLgbI52elo/bUwPpNJHZfE/P2izVF4gqmz9feU902u1m"
+	  "zsY54Lo2WO5rI/aCnKp3FHTLpYML8gbCXb3l30kU0FQ6CVkBkCDyUIMBxPIKK39Gx+tY6QgfEJ+JFXEeSP5ndmppgJVyoCFfEOu0GW+qZTALrHhrakhxax+EEYpZTu15hszi8BPwIDAQAB" )  ; ----- DKIM key mail for homecomputing.fr
+$INCLUDE /etc/bind/dnssec/Khomecomputing.fr.+008+19360.key
+$INCLUDE /etc/bind/dnssec/Khomecomputing.fr.+008+41634.key

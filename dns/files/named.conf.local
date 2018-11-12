@@ -8,12 +8,14 @@
 
 zone "homecomputing.fr" {
     type master;
-    file "homecomputing.fr.zone";
+    file "homecomputing.fr.zone.signed";
+    auto-dnssec maintain;
+    inline-signing yes; 
 };
 
 zone "hcpt.fr" {
     type master;
-    file "hcpt.fr.zone";
+    file "hcpt.fr.zone.signed";
 };
 
 zone "estcequilyafirstjeudicettesemaine.fr" {
@@ -23,5 +25,5 @@ zone "estcequilyafirstjeudicettesemaine.fr" {
 
 zone "joseph.pro" {
     type master;
-    file "joseph.pro.zone";
+    file "joseph.pro.zone.signed";
 };
