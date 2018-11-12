@@ -1,0 +1,6 @@
+all:
+  hosts:
+    cuddles:
+      ansible_become_pass: "{{ cuddles_sudo_password }}"
+    kimsufi:
+      ansible_become_pass: "{{ kimsufi_sudo_password }}"

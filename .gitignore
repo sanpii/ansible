@@ -1,1 +1,2 @@
 /tor/files/hidden_services/*/private_key
+/group_vars/*/vault
