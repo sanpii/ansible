@@ -46,7 +46,6 @@
     - seedbox
     - backup_dns
     - iodine
-    - backup_mx
 
 - hosts: tv-ch1 tv-ch2 tv-salon
   roles:

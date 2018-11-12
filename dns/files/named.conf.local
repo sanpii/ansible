@@ -18,11 +18,6 @@ zone "hcpt.fr" {
     file "hcpt.fr.zone.signed";
 };
 
-zone "estcequilyafirstjeudicettesemaine.fr" {
-    type master;
-    file "estcequilyafirstjeudicettesemaine.fr.zone";
-};
-
 zone "joseph.pro" {
     type master;
     file "joseph.pro.zone.signed";
