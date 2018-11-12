@@ -18,12 +18,6 @@ zone "hcpt.fr" {
     file "hcpt.fr.zone";
 };
 
-zone "estcequilyafirstjeudicettesemaine.fr" {
-    type slave;
-    masters { 77.201.194.164; 89.234.176.112; };
-    file "estcequilyafirstjeudicettesemaine.fr.zone";
-};
-
 zone "joseph.pro" {
     type slave;
     masters { 77.201.194.164; 89.234.176.112; };
