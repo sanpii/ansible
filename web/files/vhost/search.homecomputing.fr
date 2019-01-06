@@ -2,7 +2,6 @@ server {
     listen 80;
     listen 443 ssl http2;
     server_name search.homecomputing.fr;
-    server_name ayobcipurplcm6ba.onion;
     root /home/sanpi/public_html/searx/;
 
     ssl on;

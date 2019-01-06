@@ -1,5 +1,0 @@
-- name: tor reload
-  become: true
-  service:
-    name: tor
-    state: reloaded

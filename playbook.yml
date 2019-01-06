@@ -15,7 +15,6 @@
     - dns
     - database
     - backup
-    - tor
     - xmpp
     - printer
     - domotic/provisioning/mqtt

@@ -2,16 +2,12 @@ server {
     listen 80;
     listen 443 ssl http2;
     server_name sanpi.homecomputing.fr;
-    server_name sanpii6qqjdzws77.onion;
-    server_name sanpi.hcptwrrqn6iuhmsv.onion;
     root /home/git/public_html/blog/current;
     index index.html;
 
     ssl on;
     ssl_certificate /etc/letsencrypt/live/sanpi.homecomputing.fr/fullchain.pem;
     ssl_certificate_key /etc/letsencrypt/live/sanpi.homecomputing.fr/privkey.pem;
-
-    add_header Tor-Onion-Domain sanpii6qqjdzws77.onion;
 
     rewrite ^/feeds/Auto-hebergement.atom.xml$ /feeds/categories/auto-hebergement.rss.xml permanent;
 
