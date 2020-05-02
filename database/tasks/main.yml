@@ -1,2 +1,1 @@
-- import_tasks: mysql.yml
 - import_tasks: postgresql.yml

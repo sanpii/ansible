@@ -12,7 +12,6 @@
     - php-intl
     - php-json
     - php-mbstring
-    - php-mysql
     - php-pgsql
     - php-readline
     - php-sqlite3

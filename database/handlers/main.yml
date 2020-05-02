@@ -1,9 +1,3 @@
-- name: mysql reload
-  become: true
-  service:
-    name: mariadb
-    state: reloaded
-
 - name: postgresql reload
   become: true
   service:
