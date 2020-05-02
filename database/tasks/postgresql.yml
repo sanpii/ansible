@@ -12,6 +12,8 @@
     - { key: 'maintenance_work_mem', value: '256MB' }
     - { key: 'effective_cache_size', value: '3GB' }
     - { key: 'default_statistics_target', value: '100' }
+    - { key: 'lc_message', value: 'C' }
+    - { key: 'log_line_prefix', value: '%t [%p]: [%l-1] db=%d,user=%u,app=%a,client=%h ' }
   notify: postgresql reload
 
 - name: copy postgresql configuration
