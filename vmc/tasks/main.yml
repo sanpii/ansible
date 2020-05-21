@@ -1,4 +1,0 @@
-- name: copy custom configuration
-  copy:
-    src: vmc.conf
-    dest: ~/.config/vmc

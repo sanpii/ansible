@@ -26,12 +26,3 @@
 - hosts: tv-ch1 tv-ch2 tv-salon
   roles:
     - tv
-
-- hosts: vmc
-  roles:
-    - common
-    - domotic/provisioning/vmc
-    - vmc
-  tags:
-    - headless
-    - wifi
