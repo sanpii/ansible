@@ -1,3 +1,24 @@
+- set_fact:
+    pg_stat_tmp: "/var/lib/postgresql/pg_stat_tmp"
+
+- name: creates {{ pg_stat_tmp }}
+  become: true
+  file:
+    path: "{{ pg_stat_tmp }}"
+    state: directory
+    owner: postgres
+    group: postgres
+    mode: 0700
+
+- name: creates pg_stat_tmp mount point
+  become: true
+  mount:
+    path: "{{ pg_stat_tmp }}"
+    src: tmpfs
+    fstype: tmpfs
+    opts: size=2g
+    state: mounted
+
 - name: set postgresql configuration
   become: true
   become_user: postgres
@@ -14,6 +35,7 @@
     - { key: 'default_statistics_target', value: '100' }
     - { key: 'lc_message', value: 'C' }
     - { key: 'log_line_prefix', value: '%t [%p]: [%l-1] db=%d,user=%u,app=%a,client=%h ' }
+    - { key: 'stats_temp_directory', value: '{{ pg_stat_tmp }}' }
   notify: postgresql reload
 
 - name: copy postgresql configuration
