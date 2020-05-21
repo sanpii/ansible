@@ -1,0 +1,5 @@
+- name: clone syncserver
+  git:
+    repo: https://github.com/mozilla-services/syncserver
+    dest: ~/public_html/teleinfo
+    clone: no

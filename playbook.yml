@@ -24,6 +24,7 @@
     - nfs
     - forge
     - cfp
+    - syncserver
 
 - hosts: edf
   roles:
