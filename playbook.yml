@@ -23,6 +23,6 @@
   roles:
     - common
 
-- hosts: tv-ch1 tv-ch2 tv-salon
+- hosts: tv-ch1 tv-salon
   roles:
     - tv
