@@ -38,12 +38,6 @@
   roles:
     - common
 
-- hosts: kimsufi
-  roles:
-    - common
-    - reverse_proxy
-    - seedbox
-
 - hosts: tv-ch1 tv-ch2 tv-salon
   roles:
     - tv
