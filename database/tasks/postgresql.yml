@@ -33,7 +33,7 @@
     - { key: 'maintenance_work_mem', value: '256MB' }
     - { key: 'effective_cache_size', value: '3GB' }
     - { key: 'default_statistics_target', value: '100' }
-    - { key: 'lc_message', value: 'C' }
+    - { key: 'lc_messages', value: 'C' }
     - { key: 'log_line_prefix', value: '%t [%p]: [%l-1] db=%d,user=%u,app=%a,client=%h ' }
     - { key: 'stats_temp_directory', value: '{{ pg_stat_tmp }}' }
   notify: postgresql reload

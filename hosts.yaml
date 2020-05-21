@@ -2,3 +2,4 @@ all:
   hosts:
     cuddles:
       ansible_become_pass: "{{ cuddles_sudo_password }}"
+      postgres_version: 12
