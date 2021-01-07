@@ -14,7 +14,7 @@
   become: true
   copy:
     src: "ferm/{{ ansible_hostname }}.conf"
-    dest: /etc/ferm/ferm.conf
+    dest: /etc/ferm/ferm.d/custom
   notify: ferm reload
   when: conf.stat.exists == true
 
