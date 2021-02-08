@@ -60,7 +60,6 @@ inet_interfaces = all
 
 # Dovecot LDA
 virtual_transport = dovecot
-dovecot_destination_recipient_limit = 1
 
 # Enable SASL authentication for the smtpd daemon
 smtpd_sasl_auth_enable = yes
