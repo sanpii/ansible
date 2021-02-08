@@ -107,10 +107,18 @@ smtpd_sender_restrictions =
 # Requirement for the recipient address
 smtpd_recipient_restrictions =
     permit_mynetworks,
+    reject_sender_login_mismatch,
     permit_sasl_authenticated,
-    reject_non_fqdn_recipient,
-    reject_unknown_recipient_domain,
     reject_unauth_destination,
+    reject_non_fqdn_recipient,
+    reject_non_fqdn_sender,
+    reject_unknown_sender_domain,
+    reject_unknown_recipient_domain,
+    check_sender_access hash:/etc/postfix/sender_access,
+    reject_non_fqdn_hostname,
+    reject_invalid_hostname,
+    reject_unknown_reverse_client_hostname,
+    reject_rbl_client zen.spamhaus.org,
     permit
 
 # SRS
@@ -130,3 +138,8 @@ non_smtpd_milters = inet:localhost:11332, inet:localhost:12301, inet:localhost:1
 
 # Skip email without checking if milter has died
 milter_default_action = accept
+
+smtpd_restriction_classes = mua_sender_restrictions, mua_client_restrictions, mua_helo_restrictions
+mua_client_restrictions = permit_sasl_authenticated, reject
+mua_sender_restrictions = permit_sasl_authenticated, reject
+mua_helo_restrictions = permit_mynetworks, reject_non_fqdn_hostname, reject_invalid_hostname, permit
