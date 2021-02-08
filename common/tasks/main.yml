@@ -4,7 +4,6 @@
 - import_tasks: ferm.yml
 - import_tasks: smartctl.yml
 - import_tasks: fail2ban.yml
-- import_tasks: log.yml
 - import_tasks: mail.yml
 - import_tasks: pam.yml
 - import_tasks: cron-apt.yml

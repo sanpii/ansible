@@ -1,6 +1,0 @@
-#!/bin/bash
-
-while read LINE
-do
-    mosquitto_pub --host 192.168.1.1 --username log --pw 'J/H$R}z/",B";pF"' --topic 'system/log' --message "'"${LINE/"/\\"}"'"
-done
