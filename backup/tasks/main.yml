@@ -1,7 +1,5 @@
-- import_tasks: borg.yml
-
-- name: install rsync
+- name: install borg
   become: true
   package:
-    name: rsync
+    name: borgbackup
     state: present
