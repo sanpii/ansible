@@ -6,7 +6,7 @@
 
 - name: configure opendmarc socket
   become: true
-  fileinfile:
+  lineinfile:
     path: /etc/opendmarc.conf
     line: 'Socket inet:12302@localhost'
     regex: '^Socket='
