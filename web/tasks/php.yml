@@ -38,12 +38,6 @@
     - "/etc/php/{{ php_version }}/fpm/conf.d"
   notify: php-fpm reload
 
-- name: create php-fpm directory
-  become: true
-  file:
-    path: /run/php/php-fpm
-    state: directory
-
 - name: copy php fpm configuration
   become: true
   copy:
