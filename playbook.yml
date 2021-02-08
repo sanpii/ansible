@@ -4,7 +4,6 @@
     - common
     - mail
     - web
-    - irc
     - database
     - backup
     - xmpp
