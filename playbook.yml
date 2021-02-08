@@ -5,7 +5,6 @@
     - mail
     - web
     - irc
-    - dns
     - database
     - backup
     - xmpp
