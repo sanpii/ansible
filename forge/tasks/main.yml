@@ -16,7 +16,6 @@
     - git
 
 - include_tasks: forge/tasks/bower.yml
-- include_tasks: domotic/provisioning/common/tasks/composer.yml
 
 - name: install pelican
   become: true

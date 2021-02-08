@@ -4,4 +4,4 @@
   become: true
   command: 'yarn install --global bower'
   args:
-    creates: /usr/bin/yarn
+    creates: /usr/bin/bower
