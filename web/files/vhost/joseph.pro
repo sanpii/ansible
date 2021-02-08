@@ -1,6 +1,7 @@
 server {
     listen 80;
     server_name joseph.pro;
+    server_name www.joseph.pro;
 
     location ^~ /.well-known/acme-challenge {
         add_header Content-Type application/jose+json;

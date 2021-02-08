@@ -22,13 +22,17 @@ server {
     ssl_certificate /etc/letsencrypt/live/system.homecomputing.fr/fullchain.pem;
     ssl_certificate_key /etc/letsencrypt/live/system.homecomputing.fr/privkey.pem;
 
+    location = / {
+        rewrite ^/$ /index.php permanent;
+    }
+
     location / {
-        try_files $uri $uri/ /index.php$is_args$args;
+        try_files $1 $uri $uri/ /index.php$is_args$args;
     }
 
     location ~ \.php(/|$) {
         include /etc/nginx/fastcgi_params;
-	fastcgi_param ICINGAWEB_CONFIGDIR /etc/icingaweb2;
+        fastcgi_param ICINGAWEB_CONFIGDIR /etc/icingaweb2;
         fastcgi_pass unix:/run/php/sanpi;
     }
 }
