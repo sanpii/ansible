@@ -17,14 +17,12 @@
   with_items:
     - calendar
     - contacts
-    - files_markdown
+    - deck
+    - files_rightclick
     - mail
-    - passman
+    - photos
+    #- previewgenerator
+    - ransomware_protection
     - tasks
-
-- name: copy nginx configuration
-  become: true
-  copy:
-    src: cloud.homecomputing.fr
-    dest: /etc/nginx/sites-enabled/
-  notify: nginx reload
+    - text
+    - viewer
