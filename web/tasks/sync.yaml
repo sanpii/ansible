@@ -1,0 +1,46 @@
+- name: git status
+  local_action:
+    module: command git status --porcelain web/files/vhost/
+  check_mode: no
+  changed_when: no
+  register: status
+
+- fail:
+    msg: local changes in web/files/vhost/
+  when: status.stdout_lines | length > 0
+
+- find:
+    path: "/etc/nginx/sites-enabled/"
+    patterns: '*'
+    excludes: 404
+    file_type: any
+  register: contents
+
+- name: sync sites
+  become: true
+  fetch:
+    src: "{{ item.path }}"
+    dest: "web/files/vhost/{{ item.path | basename }}"
+    fail_on_missing: yes
+    flat: yes
+  loop: "{{ contents.files }}"
+
+- name: git status
+  local_action:
+    module: command git status --porcelain web/files/vhost/
+  run_once: true
+  check_mode: no
+  changed_when: no
+  register: status
+
+- name: git add
+  local_action:
+    module: command git add web/files/vhost/
+  run_once: true
+  when: status.stdout_lines | length > 0
+
+- name: git commit
+  local_action:
+    module: command git commit -m '[web] Updates manually modified files'
+  run_once: true
+  when: status.stdout_lines | length > 0
