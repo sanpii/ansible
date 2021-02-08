@@ -8,8 +8,6 @@
     - backup
     - xmpp
     - printer
-    - domotic/provisioning/mqtt
-    - message_broker
     - git
     - cloud
     - nfs

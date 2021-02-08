@@ -1,5 +1,0 @@
-- name: mosquitto reload
-  become: true
-  service:
-    name: mosquitto
-    state: restarted
