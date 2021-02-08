@@ -14,7 +14,6 @@
     - cloud
     - nfs
     - forge
-    - cfp
     - syncserver
 
 - hosts: handy
