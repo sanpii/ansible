@@ -15,7 +15,7 @@
     - make
     - git
 
-- include_tasks: forge/tasks/bower.yml
+- include_tasks: roles/forge/tasks/bower.yml
 
 - name: install pelican
   become: true

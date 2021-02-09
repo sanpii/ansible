@@ -1,4 +1,4 @@
-- import_tasks: common/tasks/nginx.yml
+- import_tasks: roles/common/tasks/nginx.yml
 
 - name: copy nginx CSP configuration
   become: true

@@ -34,7 +34,7 @@
 - name: copy nginx TLS configuration
   become: true
   copy:
-    src: common/files/tls.conf
+    src: roles/common/files/tls.conf
     dest: /etc/nginx/conf.d/
   notify: nginx reload
 
@@ -44,6 +44,6 @@
     src: "{{ item }}"
     dest: /etc/nginx/sites-enabled/
   with_fileglob:
-    - common/files/vhost/*
+    - roles/common/files/vhost/*
     - vhost/*
   notify: nginx reload

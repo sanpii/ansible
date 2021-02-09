@@ -1,4 +1,4 @@
-- import_tasks: cloud/tasks/nodejs.yml
+- import_tasks: roles/cloud/tasks/nodejs.yml
 
 - name: add yarn repository key
   become: true
