@@ -1,0 +1,305 @@
+- name: create pihole group
+  become: yes
+  group:
+    name: pihole
+    state: present
+    system: yes
+
+- name: create pihole user
+  become: yes
+  user:
+    name: pihole
+    group: pihole
+    state: present
+    system: yes
+    shell: /usr/sbin/nologin
+    home: /opt/pihole
+
+- name: create configuration directory
+  become: yes
+  file:
+    path: /etc/pihole
+    state: directory
+    owner: pihole
+    group: pihole
+
+- name: create ftlbranch
+  become_user: pihole
+  become: yes
+  copy:
+    dest: /etc/pihole/ftlbranch
+    content: |
+      {{ pihole_ftl_version }}
+
+- name: create adlistfile
+  become_user: pihole
+  become: yes
+  copy:
+    dest: /etc/pihole/adlists.list
+    content: |
+      https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts
+
+- name: download pihole-ftl
+  become: yes
+  get_url:
+    url: "https://ftl.pi-hole.net/v{{ pihole_ftl_version }}/pihole-FTL-linux-x86_64"
+    dest: /usr/bin/pihole-FTL
+    mode: 0755
+  notify: restart pihole-FTL
+
+- name: download macvendor.db
+  become_user: pihole
+  become: yes
+  get_url:
+    url: https://ftl.pi-hole.net/macvendor.db
+    dest: /etc/pihole/macvendor.db
+
+-
+  set_fact:
+    repository: "https://raw.githubusercontent.com/pi-hole/pi-hole/v{{ pihole_version }}"
+
+- name: download scripts
+  become_user: pihole
+  become: yes
+  get_url:
+    url: "{{ repository }}/{{ item }}"
+    dest: /opt/pihole
+    mode: 0755
+  with_items:
+    - gravity.sh
+    - advanced/Scripts/chronometer.sh
+    - advanced/Scripts/list.sh
+    - advanced/Scripts/pihole-reenable.sh
+    - advanced/Scripts/piholeARPTable.sh
+    - advanced/Scripts/piholeCheckout.sh
+    - advanced/Scripts/piholeDebug.sh
+    - advanced/Scripts/piholeLogFlush.sh
+    - advanced/Scripts/query.sh
+    - advanced/Scripts/setupLCD.sh
+    - advanced/Scripts/update.sh
+    - advanced/Scripts/updatecheck.sh
+    - advanced/Scripts/version.sh
+    - advanced/Scripts/webpage.sh
+    - advanced/Scripts/wildcard_regex_converter.sh
+    - advanced/Scripts/COL_TABLE
+
+- name: fix gravity.sh
+  become_user: pihole
+  become: yes
+  replace:
+    path: /opt/pihole/gravity.sh
+    regexp: '("\${PIHOLE_COMMAND}")'
+    replace: 'sudo \1'
+
+- name: download pihole
+  become: yes
+  get_url:
+    url: "{{ repository }}/pihole"
+    dest: /usr/local/bin
+    mode: 0755
+
+- name: download bash-completion
+  become: yes
+  get_url:
+    url: "{{ repository }}/advanced/bash-completion/pihole"
+    dest: /etc/bash_completion.d/pihole
+
+- name: download dnsmasq.conf
+  become: yes
+  get_url:
+    url: "{{ repository }}/advanced/dnsmasq.conf.original"
+    dest: /etc/dnsmasq.conf
+
+- name: update dnsmasq.conf
+  become: yes
+  lineinfile:
+    path: /etc/dnsmasq.conf
+    line: conf-dir=/etc/dnsmasq.d
+    state: present
+
+- name: create dnsmasq directory
+  become: yes
+  file:
+    path: /etc/dnsmasq.d
+    state: directory
+    mode: 0755
+
+- name: download dnsmasq pihole configuration
+  become: yes
+  get_url:
+    url: "{{ repository }}/advanced/01-pihole.conf"
+    dest: /etc/dnsmasq.d/01-pihole.conf
+
+- name: update dnsmasq configuration
+  become: yes
+  replace:
+    path: /etc/dnsmasq.d/01-pihole.conf
+    regexp: "@{{ item.name }}@"
+    replace: "{{ item.value }}"
+  with_items:
+    - name: INT
+      value: "{{ pihole_interface }}"
+    - name: DNS1
+      value: "{{ pihole_dns_1 }}"
+    - name: DNS2
+      value: "{{ pihole_dns_2 }}"
+    - name: CACHE_SIZE
+      value: "{{ pihole_cache_size }}"
+
+- name: create dns-servers.conf
+  become_user: pihole
+  become: yes
+  copy:
+    dest: /etc/pihole/dns-servers.conf
+    content: |
+      Aquilenet;185.233.100.100;185.233.100.101;2a0c:e300::100;2a0c:e300::101
+      ARN;89.234.141.66;2a00:5881:8100:1000::3
+      FDN;80.67.169.12;80.67.169.40;2001:910:800::12;2001:910:800::40
+      LDN;80.67.188.188;2001:913::8
+
+- name: create pihole-FTL.conf
+  become_user: pihole
+  become: yes
+  copy:
+    dest: /etc/pihole/pihole-FTL.conf
+    content: |
+      PRIVACYLEVEL=3
+      IGNORE_LOCALHOST=yes
+  notify: restart pihole-FTL
+
+- name: create custom.list
+  become_user: pihole
+  become: yes
+  file:
+    path: /etc/pihole/custom.list
+    state: touch
+
+- name: download admin
+  become_user: pihole
+  become: true
+  git:
+    repo: https://github.com/pi-hole/AdminLTE.git
+    version: "v{{ pihole_admin_version }}"
+    dest: /opt/pihole/www
+    update: no
+
+- name: download sudoer
+  become: yes
+  get_url:
+    url: "{{ repository }}/advanced/Templates/pihole.sudo"
+    dest: /etc/sudoers.d/pihole
+
+- name: adds sudoer configuration
+  become: yes
+  lineinfile:
+    path: /etc/sudoers
+    line: "pihole  ALL=(root) NOPASSWD: /usr/local/bin/pihole"
+
+- name: download pihole.cron
+  become: yes
+  get_url:
+    url: "{{ repository }}/advanced/Templates/pihole.cron"
+    dest: /etc/cron.d/pihole
+
+- name: disable cron
+  become: yes
+  replace:
+    path: /etc/cron.d/pihole
+    regexp: '^(.* (updatechecker|updateGravity) .*)$'
+    replace: '# \1'
+
+- name: download logrotate configuration
+  become: yes
+  get_url:
+    url: "{{ repository }}/advanced/Templates/logrotate"
+    dest: /etc/pihole/logrotate
+
+- name: create dnsmasq directory
+  become: yes
+  file:
+    path: "/usr/local/share/man/{{ item }}"
+    state: directory
+  with_items:
+    - man5
+    - man8
+
+- name: download man page
+  become: yes
+  get_url:
+    url: "{{ repository }}/manpages/{{ item | basename }}"
+    dest: "/usr/local/share/man/{{ item }}"
+  with_items:
+    - man8/pihole.8
+    - man8/pihole-FTL.8
+    - man5/pihole-FTL.conf.5
+  notify: mandb
+
+- name: create setupVars.conf
+  become_user: pihole
+  become: yes
+  copy:
+    dest: /etc/pihole/setupVars.conf
+    content: |
+      PIHOLE_INTERFACE={{ pihole_interface }}
+      IPV4_ADDRESS=0.0.0.0
+      IPV6_ADDRESS=::/0
+      PIHOLE_DNS_1={{ pihole_dns_1 }}
+      PIHOLE_DNS_2={{ pihole_dns_2 }}
+      QUERY_LOGGING=true
+      INSTALL_WEB_SERVER=false
+      INSTALL_WEB_INTERFACE=true
+      LIGHTTPD_ENABLED=false
+      CACHE_SIZE={{ pihole_cache_size }}
+      BLOCKING_ENABLED=true
+
+- name: create /etc/.pihole
+  become: yes
+  file:
+    path: "/etc/.pihole/{{ item }}"
+    state: directory
+    owner: pihole
+    group: pihole
+  with_items:
+    - "automated install"
+    - "advanced/Scripts/database_migration"
+    - "advanced/Templates"
+
+- name: download basic-install.sh
+  become_user: pihole
+  become: yes
+  get_url:
+    url: "{{ repository }}/automated%20install/basic-install.sh"
+    dest: "/etc/.pihole/automated install/basic-install.sh"
+
+- name: download gravity-db.sh
+  become_user: pihole
+  become: yes
+  get_url:
+    url: "{{ repository }}/{{ item }}"
+    dest: "/etc/.pihole/{{ item }}"
+  with_items:
+    - advanced/Scripts/database_migration/gravity-db.sh
+    - advanced/Templates/gravity.db.sql
+    - advanced/Templates/gravity_copy.sql
+
+- name: processe dns settings
+  become: yes
+  shell: |
+    setupVars=/etc/pihole/setupVars.conf
+    source /opt/pihole/webpage.sh
+    ProcessDNSSettings
+  args:
+    executable: /bin/bash
+
+- name: download service
+  become: yes
+  get_url:
+    url: "{{ repository }}/advanced/Templates/pihole-FTL.service"
+    dest: /etc/init.d/pihole-FTL
+    mode: 0755
+  notify: systemctl daemon-reload
+
+- name: run gravity.sh
+  become_user: pihole
+  become: yes
+  command: /opt/pihole/gravity.sh --force

@@ -1,0 +1,15 @@
+- name: systemctl daemon-reload
+  become: true
+  systemd:
+    daemon_reload: yes
+
+- name: mandb
+  become: true
+  command: mandb
+
+- name: restart pihole-FTL
+  become: yes
+  service:
+    name: pihole-FTL
+    enabled: yes
+    state: restarted

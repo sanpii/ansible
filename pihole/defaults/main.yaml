@@ -1,0 +1,7 @@
+pihole_dns_1: 80.67.169.12
+pihole_dns_2: 80.67.169.40
+pihole_interface: enp13s0
+pihole_cache_size: 10000
+pihole_version: 5.2.4
+pihole_admin_version: 5.3.2
+pihole_ftl_version: 5.6

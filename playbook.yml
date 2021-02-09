@@ -11,6 +11,7 @@
     - nfs
     - forge
     - syncserver
+    - pihole
 
 - hosts: handy
   roles:
