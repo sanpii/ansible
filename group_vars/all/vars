@@ -1,2 +1,1 @@
 cuddles_sudo_password: "{{ vault_cuddles_sudo_password }}"
-kimsufi_sudo_password: "{{ vault_kimsufi_sudo_password }}"
