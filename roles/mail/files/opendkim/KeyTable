@@ -1,3 +1,3 @@
-mail._domainkey.homecomputing.fr homecomputing.fr:mail:/etc/opendkim/keys/homecomputing.fr/mail.private
-mail._domainkey.joseph.pro joseph.pro:mail:/etc/opendkim/keys/joseph.pro/mail.private
-mail._domainkey.hcpt.fr hcpt:fr:mail:/etc/opendkim/keys/hcpt.fr/mail.private
+mail._domainkey.hcpt.fr hcpt.fr:mail:/etc/opendkim/keys/mail.private
+mail._domainkey.homecomputing.fr homecomputing.fr:mail:/etc/opendkim/keys/mail.private
+mail._domainkey.joseph.pro joseph.pro:mail:/etc/opendkim/keys/mail.private
