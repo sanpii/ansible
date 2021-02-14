@@ -11,7 +11,6 @@
     - php-gd
     - php-gmp
     - php-intl
-    - php-json
     - php-mbstring
     - php-pgsql
     - php-readline
