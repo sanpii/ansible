@@ -1,2 +1,2 @@
 debian_version: buster
-node_version: 10
+node_version: 15

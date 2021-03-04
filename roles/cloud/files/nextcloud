@@ -1,0 +1,1 @@
+*/15 * * * * sanpi /usr/bin/php7.4 /home/sanpi/public_html/owncloud/cron.php
