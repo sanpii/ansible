@@ -16,7 +16,7 @@
     path: "{{ pg_stat_tmp }}"
     src: tmpfs
     fstype: tmpfs
-    opts: size=2g
+    opts: size=2g,uid=postgres,gid=postgres,mode=0700
     state: mounted
 
 - name: copy postgresql configuration
