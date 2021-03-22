@@ -1,0 +1,25 @@
+- name: install pgbadger
+  become: true
+  package:
+    name: pgbadger
+    state: present
+
+- name: pgbadger cron task
+  become: true
+  cron:
+    name: pgbadger
+    user: postgres
+    minute: "0"
+    hour: "4"
+    job: "/usr/bin/pgbadger -I -q /var/log/postgresql/postgresql-{{ postgres_version }}-main.log.1 -O /var/lib/postgresql/pg_reports/"
+    cron_file: pgbadger
+    state: present
+
+- name: creates pgbadger report dir
+  become: true
+  file:
+    path: /var/lib/postgresql/pg_reports
+    state: directory
+    owner: postgres
+    group: www-data
+    mode: 0750
