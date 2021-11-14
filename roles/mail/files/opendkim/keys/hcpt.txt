@@ -1,0 +1,3 @@
+mail._domainkey	IN	TXT	( "v=DKIM1; h=sha256; k=rsa; "
+	  "p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAyTUGY7HkXQTYx1fqy5M4aoEHrZxyN7VjfmqmZ6LCEXyF1o1kn8WLltvIsxUH6ZthUsxhlwGNxAyfFS4A/SQWjiHDdMLP4wVDinhMffDaU64H7KMBLBJDBZbfBIdXj266uTMqEWj1GdZaBtLi8TVKQzHLC4dy3axafCZWzZv2i92Iy/mEXXKtCumSH9rv5sy+sQ8XILJtUrejTT"
+	  "hhqmHvg2LamB2QqfGVJ+yzmhyUXS+MWdfkJlS8koClEASJ60TJMDGopT7yU28b0jlABylkysoblwERZ4VcyrnUs63YC+4uMzD/RMLSYOLyHwm0knNe1ilu0lbueIgK7GqSpNhiAQIDAQAB" )  ; ----- DKIM key mail for hcpt.fr

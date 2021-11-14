@@ -1,0 +1,3 @@
+mail._domainkey	IN	TXT	( "v=DKIM1; h=sha256; k=rsa; "
+	  "p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAzj4DfNaC47t4rW72ng/iE7ATBBhWO3mEvKBLDzGjxXIr85g+DGyvdiBRCb7QzYDg96LRCSThcsy4y8mCT7oGh2qVyEj5W0FTp2HGeSavKaDTFQYuH9TTJp3G1aZGYr4bci9TWXzuY1qgbRaFPCVFyzCajDWBwOjNsV4Z+XxTSr2e0yPUOqxc/xl5A0cooOgJU7Zl/9r/2QH1md"
+	  "x3gKEQccPAD4WmT+dn+yWXogonGHjEsdINRdXttwJJlZwIo80s1zGlkJMgzFrBzCtX3EWxUNSh3Reztd9RreRBLg26tUoBvOWnmcY2m7BnXc3o0FEVzeKheHYerFYkN7tAQkOiLwIDAQAB" )  ; ----- DKIM key mail for joseph.pro
