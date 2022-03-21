@@ -1,1 +1,2 @@
-*/15 * * * * sanpi /usr/bin/php /home/sanpi/public_html/owncloud/cron.php
+*/15 * * * * sanpi /usr/bin/php8.0 /home/sanpi/public_html/nextcloud/current/cron.php
+*/10 * * * * sanpi /usr/bin/php8.0 /home/sanpi/public_html/nextcloud/current/occ preview:pre-generate
