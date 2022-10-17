@@ -1,24 +1,3 @@
-- set_fact:
-    pg_stat_tmp: "/var/lib/postgresql/pg_stat_tmp"
-
-- name: creates {{ pg_stat_tmp }}
-  become: true
-  file:
-    path: "{{ pg_stat_tmp }}"
-    state: directory
-    owner: postgres
-    group: postgres
-    mode: 0700
-
-- name: creates pg_stat_tmp mount point
-  become: true
-  mount:
-    path: "{{ pg_stat_tmp }}"
-    src: tmpfs
-    fstype: tmpfs
-    opts: size=2g,uid=postgres,gid=postgres,mode=0700
-    state: mounted
-
 - name: copy postgresql configuration
   become: true
   copy:
